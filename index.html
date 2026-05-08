@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Ma Semaine Verte</title>
+
+  <link rel="stylesheet" href="styles/variables.css"/>
+  <link rel="stylesheet" href="styles/style.css"/>
+</head>
+<body>
+
+<nav id="navbar">
+  <a href="#" class="active">Accueil</a>
+  <a href="#">Fonctions</a>
+  <a href="#">C1 Trajet</a>
+  <a href="#">C2 Repas</a>
+  <a href="#">C3 Num.</a>
+  <a href="#">C4 Elec.</a>
+  <a href="#">C5 Achats</a>
+  <a href="#">Bilan</a>
+  <a href="#">Promo</a>
+</nav>
+
+<div class="layout">
+
+  <div class="sidebar">
+    <div class="titre-app">Bienvenue dans notre application</div>
+    <div class="sous-titre">5 étudiants, des données, ton impact révélé</div>
+    <div class="bloc-nom">Entrer votre nom: par exemple (Japhet )</div>
+  </div>
+
+  <div class="contenu">
+    <div id="page-accueil">
+      <div class="carte-semaine">
+        <div class="bonjour">Bonjour, Japhet</div>
+        <h2>Ma semaine en cours</h2>
+        <span class="total">34.2</span>
+        <span class="unite">kgCO2e</span>
+        <div class="barre-nationale">
+          <div class="remplissage"></div>
+        </div>
+        <div class="mention">88% de la moyenne nationale (39 kgCO2e/sem.)</div>
+        <button class="btn-planete">Carbone Twin : 1.2 planetes</button>
+      </div>
+      <div class="grille-criteres">
+
+        <div class="carte-critere">
+          <div class="nom">🚗 Trajet</div>
+          <div class="valeur">14.5 kg</div>
+          <div class="barre-critere">
+            <div class="fill" style="background:var(--couleur-trajet);width:42%"></div>
+          </div>
+        </div>
+
+        <div class="carte-critere">
+          <div class="nom">🍽️ Repas</div>
+          <div class="valeur">12.8 kg</div>
+          <div class="barre-critere">
+            <div class="fill" style="background:var(--couleur-repas);width:37%"></div>
+          </div>
+        </div>
+
+        <div class="carte-critere">
+          <div class="nom">💻 Numerique</div>
+          <div class="valeur">2.7 kg</div>
+          <div class="barre-critere">
+            <div class="fill" style="background:var(--couleur-numerique);width:20%"></div>
+          </div>
+        </div>
+
+        <div class="carte-critere">
+          <div class="nom">🔌 Electromenager</div>
+          <div class="valeur">4.2 kg</div>
+          <div class="barre-critere">
+            <div class="fill" style="background:var(--couleur-electro);width:25%"></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="carte-achats" onclick="allerCritere5()">
+        <div class="gauche">
+          <span style="font-size:1.3rem">🛒</span>
+          <div>
+            <div class="nom">Achats / vetements</div>
+            <div class="valeur" id="valeur-achats">0.0 kg</div>
+            <div class="barre-achats">
+              <div class="fill" id="barre-achats-fill"></div>
+            </div>
+          </div>
+        </div>
+        <div class="fleche-verte">→</div>
+      </div>
+
+    </div>
+    <div id="page-critere5" style="display:none;">
+      <div class="entete-critere">
+        <h1>
+          Critere 5 — Achats en ligne et vetements
+          <span class="badge-nom">Japhet</span>
+        </h1>
+        <div class="sous">Koyakosso Esso Japhet — Base Empreinte ADEME v23.6</div>
+        <div id="statut-api" style="font-size:0.75rem;margin-top:0.3rem;"></div>
+      </div>
+      <div class="stepper">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-label">Trajet</div>
+        </div>
+        <div class="step-line"></div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-label">Repas</div>
+        </div>
+        <div class="step-line"></div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-label">Num.</div>
+        </div>
+        <div class="step-line"></div>
+        <div class="step">
+          <div class="step-num inactif">4</div>
+          <div class="step-label inactif">Elec.</div>
+        </div>
+        <div class="step-line"></div>
+        <div class="step">
+          <div class="step-num actuel">5</div>
+          <div class="step-label actuel">Achats</div>
+        </div>
+      </div>
+      <div class="section-form">
+        <h3>Vetements achetes cette semaine</h3>
+
+        <div class="ligne-article">
+          <div class="icone-article">👕</div>
+          <div class="info-article">
+            <div class="nom-art">T-shirt neuf</div>
+            <div class="ecv-art">5 kgCO2e/piece</div>
+          </div>
+          <div class="compteur">
+            <button onclick="changer('tshirt', -1)">−</button>
+            <span class="qte" id="qte-tshirt">0</span>
+            <button onclick="changer('tshirt', +1)">+</button>
+          </div>
+        </div>
+
+        <div class="ligne-article">
+          <div class="icone-article">👖</div>
+          <div class="info-article">
+            <div class="nom-art">Jean neuf</div>
+            <div class="ecv-art">25 kgCO2e/piece</div>
+          </div>
+          <div class="compteur">
+            <button onclick="changer('jean', -1)">−</button>
+            <span class="qte" id="qte-jean">0</span>
+            <button onclick="changer('jean', +1)">+</button>
+          </div>
+        </div>
+
+        <div class="ligne-article">
+          <div class="icone-article">👗</div>
+          <div class="info-article">
+            <div class="nom-art">Robe / pull neuf</div>
+            <div class="ecv-art">8 kgCO2e/piece</div>
+          </div>
+          <div class="compteur">
+            <button onclick="changer('robe', -1)">−</button>
+            <span class="qte" id="qte-robe">0</span>
+            <button onclick="changer('robe', +1)">+</button>
+          </div>
+        </div>
+
+        <div class="ligne-article">
+          <div class="icone-article">♻️</div>
+          <div class="info-article">
+            <div class="nom-art">Seconde main</div>
+            <div class="ecv-art">0.5 kgCO2e/piece</div>
+          </div>
+          <div class="compteur">
+            <button onclick="changer('secondemain', -1)">−</button>
+            <span class="qte" id="qte-secondemain">0</span>
+            <button onclick="changer('secondemain', +1)">+</button>
+          </div>
+        </div>
+
+      </div>
+      <div class="section-form">
+        <h3>Livraisons recues cette semaine</h3>
+
+        <div class="ligne-article">
+          <div class="icone-article">📦</div>
+          <div class="info-article">
+            <div class="nom-art">Colis standard</div>
+            <div class="ecv-art">0.3 kgCO2e/colis</div>
+          </div>
+          <div class="compteur">
+            <button onclick="changer('colis', -1)">−</button>
+            <span class="qte" id="qte-colis">0</span>
+            <button onclick="changer('colis', +1)">+</button>
+          </div>
+        </div>
+
+        <div class="ligne-article">
+          <div class="icone-article">✈️</div>
+          <div class="info-article">
+            <div class="nom-art">Express avion</div>
+            <div class="ecv-art">2.5 kgCO2e/colis</div>
+          </div>
+          <div class="compteur">
+            <button onclick="changer('express', -1)">−</button>
+            <span class="qte" id="qte-express">0</span>
+            <button onclick="changer('express', +1)">+</button>
+          </div>
+        </div>
+
+      </div>
+      <div class="section-form">
+        <h3>Option eco-livraison</h3>
+
+        <div class="ligne-toggle">
+          <div class="icone-article">🌿</div>
+          <div class="info-toggle">
+            <div class="nom-tog">Mode eco-livraison</div>
+            <div class="desc-tog">Reduit l'impact livraisons de 30%</div>
+          </div>
+          <div class="toggle-group">
+            <button id="btn-off" class="actif" onclick="setEco(false)">Off</button>
+            <button id="btn-on"  onclick="setEco(true)">On</button>
+          </div>
+        </div>
+
+      </div>
+      <div class="barre-total">
+        <div>
+          <div class="label-total">Empreinte achats (semaine)</div>
+          <span class="valeur-total" id="total-critere5">0.0</span>
+          <span class="unite-total">kgCO2e</span>
+        </div>
+        <button class="btn-saisir">Saisir vos achats</button>
+      </div>
+      <div class="nav-bas">
+        <button class="btn-precedent" onclick="allerAccueil()">← Electromenager</button>
+        <button class="btn-suivant">Voir mon bilan →</button>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+<script src="js/calcul.js"></script>
+<script src="js/api.js"></script>
+<script src="js/dom.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>
