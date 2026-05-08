@@ -4,7 +4,6 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Ma Semaine Verte</title>
-
   <link rel="stylesheet" href="styles/variables.css"/>
   <link rel="stylesheet" href="styles/style.css"/>
 </head>
@@ -27,24 +26,41 @@
   <div class="sidebar">
     <div class="titre-app">Bienvenue dans notre application</div>
     <div class="sous-titre">5 étudiants, des données, ton impact révélé</div>
-    <div class="bloc-nom">Entrer votre nom: par exemple (Japhet )</div>
+
+    <div id="form-nom" class="bloc-nom-form">
+      <div class="label-nom">Entrez votre prénom :</div>
+      <input
+        type="text"
+        id="input-nom"
+        placeholder="ex: Japhet"
+        maxlength="20"
+      />
+      <button class="btn-valider-nom" onclick="validerNom()">Valider ✓</button>
+    </div>
+
+    <div id="affichage-nom" class="bloc-nom-affichage">
+      <div class="bonjour-sidebar">Bonjour,</div>
+      <div class="nom-affiche nom-utilisateur">—</div>
+      <button class="btn-modifier-nom" onclick="modifierNom()">✏️ Modifier</button>
+    </div>
+
   </div>
 
   <div class="contenu">
-    <div id="page-accueil">
+
+    <div id="page-accueil" class="page">
+
       <div class="carte-semaine">
-        <div class="bonjour">Bonjour, Japhet</div>
+        <div class="bonjour">Bonjour, <span class="nom-utilisateur">—</span></div>
         <h2>Ma semaine en cours</h2>
         <span class="total">34.2</span>
         <span class="unite">kgCO2e</span>
-        <div class="barre-nationale">
-          <div class="remplissage"></div>
-        </div>
+        <div class="barre-nationale"><div class="remplissage"></div></div>
         <div class="mention">88% de la moyenne nationale (39 kgCO2e/sem.)</div>
         <button class="btn-planete">Carbone Twin : 1.2 planetes</button>
       </div>
-      <div class="grille-criteres">
 
+      <div class="grille-criteres">
         <div class="carte-critere">
           <div class="nom">🚗 Trajet</div>
           <div class="valeur">14.5 kg</div>
@@ -52,7 +68,6 @@
             <div class="fill" style="background:var(--couleur-trajet);width:42%"></div>
           </div>
         </div>
-
         <div class="carte-critere">
           <div class="nom">🍽️ Repas</div>
           <div class="valeur">12.8 kg</div>
@@ -60,7 +75,6 @@
             <div class="fill" style="background:var(--couleur-repas);width:37%"></div>
           </div>
         </div>
-
         <div class="carte-critere">
           <div class="nom">💻 Numerique</div>
           <div class="valeur">2.7 kg</div>
@@ -68,7 +82,6 @@
             <div class="fill" style="background:var(--couleur-numerique);width:20%"></div>
           </div>
         </div>
-
         <div class="carte-critere">
           <div class="nom">🔌 Electromenager</div>
           <div class="valeur">4.2 kg</div>
@@ -76,8 +89,8 @@
             <div class="fill" style="background:var(--couleur-electro);width:25%"></div>
           </div>
         </div>
-
       </div>
+
       <div class="carte-achats" onclick="allerCritere5()">
         <div class="gauche">
           <span style="font-size:1.3rem">🛒</span>
@@ -93,15 +106,233 @@
       </div>
 
     </div>
-    <div id="page-critere5" style="display:none;">
+  
+    <div id="page-fonctions" class="page" style="display:none;">
+
+      <div class="page-titre">Fonctionnalites generales</div>
+      <div class="page-sous-titre">Communes a toute l'application</div>
+
+      <div class="liste-fonctions">
+
+        <div class="carte-fonction">
+          <div class="icone-f">📊</div>
+          <div>
+            <div class="titre-f">Tableau de bord hebdomadaire</div>
+            <div class="desc-f">Score total en kgCO2e mis a jour en temps reel. Acces direct aux 5 criteres. Progression vs moyenne nationale (39 kgCO2e/sem.).</div>
+          </div>
+        </div>
+
+        <div class="carte-fonction">
+          <div class="icone-f">🌡️</div>
+          <div>
+            <div class="titre-f">Carte thermique lundi → vendredi</div>
+            <div class="desc-f">Visualisation jour par jour. Couleur : vert (faible), orange (moyen), rouge (eleve). L'etudiant identifie instantanement ses journees les plus carbonees.</div>
+          </div>
+        </div>
+
+        <div class="carte-fonction">
+          <div class="icone-f">🌍</div>
+          <div>
+            <div class="titre-f">Indicateur Carbone Twin</div>
+            <div class="desc-f">Nombre de planetes Terre necessaires si toute l'humanite vivait comme l'utilisateur cette semaine. Chiffre fort, personnalise, memorisable.</div>
+          </div>
+        </div>
+
+        <div class="carte-fonction">
+          <div class="icone-f">🔀</div>
+          <div>
+            <div class="titre-f">Simulateur "Et si..."</div>
+            <div class="desc-f">Sliders interactifs : "Et si je prenais le bus ?" L'application recalcule instantanement les economies en kgCO2e.</div>
+          </div>
+        </div>
+
+        <div class="carte-fonction">
+          <div class="icone-f">🏆</div>
+          <div>
+            <div class="titre-f">Comparaison anonyme avec la promo</div>
+            <div class="desc-f">Classement anonymise des etudiants de la promotion. Position de l'etudiant visible, identites masquees. Emulation positive.</div>
+          </div>
+        </div>
+
+        <div class="carte-fonction">
+          <div class="icone-f">💾</div>
+          <div>
+            <div class="titre-f">Mode hors connexion (JSON statique)</div>
+            <div class="desc-f">Tous les facteurs d'emission sont pre-charges dans un fichier JSON local. L'app fonctionne sans connexion internet, meme en demonstration jury.</div>
+          </div>
+        </div>
+
+        <div class="carte-fonction">
+          <div class="icone-f">🔢</div>
+          <div>
+            <div class="titre-f">Formule commune a tous les criteres</div>
+            <div class="desc-f">Empreinte (kgCO2e) = Quantite x Facteur d'emission. Facteurs issus de la Base Empreinte ADEME v23.6 et de l'API Impact CO2.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+   
+    <div id="page-bilan" class="page" style="display:none;">
+
+      <div class="page-titre">Bilan hebdomadaire</div>
+      <div class="page-sous-titre">Tous criteres — semaine en cours</div>
+
+      <div class="grille-jours">
+        <div class="carte-jour jour-vert">
+          <div class="nom-jour">Lun</div>
+          <div class="val-jour val-vert">3.1</div>
+        </div>
+        <div class="carte-jour jour-orange">
+          <div class="nom-jour">Mar</div>
+          <div class="val-jour val-orange">5.8</div>
+        </div>
+        <div class="carte-jour jour-vert">
+          <div class="nom-jour">Mer</div>
+          <div class="val-jour val-vert">2.9</div>
+        </div>
+        <div class="carte-jour jour-rouge">
+          <div class="nom-jour">Jeu</div>
+          <div class="val-jour val-rouge">8.4</div>
+        </div>
+        <div class="carte-jour jour-orange">
+          <div class="nom-jour">Ven</div>
+          <div class="val-jour val-orange">3.9</div>
+        </div>
+      </div>
+
+      <div class="titre-section-bilan">REPARTITION PAR CRITERE</div>
+      <div class="liste-barres">
+
+        <div class="ligne-barre">
+          <div class="label-b">Trajet</div>
+          <div class="barre-externe">
+            <div class="barre-interne" style="background:var(--couleur-trajet);width:100%;">
+              <span class="val-barre">14.5 kg</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ligne-barre">
+          <div class="label-b">Repas</div>
+          <div class="barre-externe">
+            <div class="barre-interne" style="background:var(--couleur-repas);width:88%;">
+              <span class="val-barre">12.8 kg</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ligne-barre">
+          <div class="label-b">Achats</div>
+          <div class="barre-externe">
+            <div class="barre-interne" style="background:var(--couleur-achats);width:4%;">
+              <span class="val-barre" id="bilan-achats-val" style="color:#f97316;position:absolute;left:2.5rem;">0.0 kg</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ligne-barre">
+          <div class="label-b">Numerique</div>
+          <div class="barre-externe">
+            <div class="barre-interne" style="background:var(--couleur-numerique);width:19%;">
+              <span class="val-barre">2.7 kg</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ligne-barre">
+          <div class="label-b">Electromenager</div>
+          <div class="barre-externe">
+            <div class="barre-interne" style="background:var(--couleur-electro);width:32%;">
+              <span class="val-barre">4.7 kg</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="carte-carbone-twin">
+        <div class="globe">🌍</div>
+        <div>
+          <div class="twin-titre">Carbone Twin</div>
+          <div class="twin-desc">Si toute l'humanite vivait comme toi cette semaine...</div>
+        </div>
+        <div class="twin-val">
+          <div class="twin-chiffre">1.2</div>
+          <div class="twin-unite">planetes</div>
+        </div>
+      </div>
+
+    </div>
+  
+    <div id="page-promo" class="page" style="display:none;">
+
+      <div class="page-titre">Ma promo cette semaine</div>
+      <div class="sous-titre-promo">Classement anonyme — 24 etudiants actifs</div>
+
+      <div class="liste-classement">
+
+        <div class="ligne-classement">
+          <div class="rang">1</div>
+          <div class="avatar" style="background:#a78bfa;">A</div>
+          <div class="nom-etudiant">Etudiant A</div>
+          <div class="kg-etudiant">18.3 kg</div>
+        </div>
+
+        <div class="ligne-classement">
+          <div class="rang">2</div>
+          <div class="avatar" style="background:#fb923c;">B</div>
+          <div class="nom-etudiant">Etudiant B</div>
+          <div class="kg-etudiant">21.7 kg</div>
+        </div>
+
+        <div class="ligne-classement moi">
+          <div class="rang moi">3</div>
+          <div class="avatar" style="background:#86efac;color:#1a5c38;" id="avatar-moi">J</div>
+          <div class="nom-etudiant moi">Toi (<span class="nom-utilisateur">—</span>)</div>
+          <div class="kg-etudiant moi">34.7 kg</div>
+        </div>
+
+        <div class="ligne-classement">
+          <div class="rang">4</div>
+          <div class="avatar" style="background:#fca5a5;">C</div>
+          <div class="nom-etudiant">Etudiant C</div>
+          <div class="kg-etudiant">27.5 kg</div>
+        </div>
+
+        <div class="ligne-classement">
+          <div class="rang">5</div>
+          <div class="avatar" style="background:#d1d5db;color:#444;">D</div>
+          <div class="nom-etudiant">Etudiant D</div>
+          <div class="kg-etudiant">31.2 kg</div>
+        </div>
+
+      </div>
+
+      <div class="carte-mediane">
+        <div>
+          <div class="mediane-label">Mediane promo</div>
+          <div class="mediane-val">29.8 kg</div>
+        </div>
+        <div>
+          <div class="dessous-label">Tu es en dessous de</div>
+          <div class="dessous-val">19%</div>
+        </div>
+      </div>
+
+    </div>
+  
+    <div id="page-critere5" class="page" style="display:none;">
+
       <div class="entete-critere">
         <h1>
           Critere 5 — Achats en ligne et vetements
-          <span class="badge-nom">Japhet</span>
+          <span class="badge-nom nom-utilisateur">—</span>
         </h1>
         <div class="sous">Koyakosso Esso Japhet — Base Empreinte ADEME v23.6</div>
         <div id="statut-api" style="font-size:0.75rem;margin-top:0.3rem;"></div>
       </div>
+
       <div class="stepper">
         <div class="step">
           <div class="step-num">1</div>
@@ -128,6 +359,7 @@
           <div class="step-label actuel">Achats</div>
         </div>
       </div>
+
       <div class="section-form">
         <h3>Vetements achetes cette semaine</h3>
 
@@ -182,8 +414,8 @@
             <button onclick="changer('secondemain', +1)">+</button>
           </div>
         </div>
-
       </div>
+
       <div class="section-form">
         <h3>Livraisons recues cette semaine</h3>
 
@@ -212,11 +444,10 @@
             <button onclick="changer('express', +1)">+</button>
           </div>
         </div>
-
       </div>
+
       <div class="section-form">
         <h3>Option eco-livraison</h3>
-
         <div class="ligne-toggle">
           <div class="icone-article">🌿</div>
           <div class="info-toggle">
@@ -228,8 +459,8 @@
             <button id="btn-on"  onclick="setEco(true)">On</button>
           </div>
         </div>
-
       </div>
+
       <div class="barre-total">
         <div>
           <div class="label-total">Empreinte achats (semaine)</div>
@@ -238,6 +469,7 @@
         </div>
         <button class="btn-saisir">Saisir vos achats</button>
       </div>
+
       <div class="nav-bas">
         <button class="btn-precedent" onclick="allerAccueil()">← Electromenager</button>
         <button class="btn-suivant">Voir mon bilan →</button>
@@ -248,6 +480,7 @@
   </div>
 
 </div>
+
 <script src="js/calcul.js"></script>
 <script src="js/api.js"></script>
 <script src="js/dom.js"></script>

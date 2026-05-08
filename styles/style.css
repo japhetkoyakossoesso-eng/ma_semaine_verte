@@ -1,4 +1,3 @@
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -510,3 +509,322 @@ nav a.active {
   font-size: 0.88rem;
   cursor: pointer;
 }
+
+.bloc-nom-form {
+  background: var(--jaune-clair);
+  border-radius: var(--rayon-md);
+  padding: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.bloc-nom-form .label-nom {
+  font-size: 0.78rem;
+  font-weight: bold;
+  color: var(--texte);
+}
+
+.bloc-nom-form input {
+  width: 100%;
+  padding: 0.4rem 0.6rem;
+  border: 1.5px solid #d1d5db;
+  border-radius: var(--rayon-sm);
+  font-size: 0.82rem;
+  font-family: var(--police);
+}
+
+.bloc-nom-form input:focus {
+  outline: none;
+  border-color: var(--vert-moyen);
+}
+
+.btn-valider-nom {
+  background: var(--vert-moyen);
+  color: var(--blanc);
+  border: none;
+  border-radius: var(--rayon-sm);
+  padding: 0.4rem 0.7rem;
+  font-size: 0.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+}
+
+.btn-valider-nom:hover {
+  background: var(--vert-fonce);
+}
+
+.bloc-nom-affichage {
+  background: var(--jaune-clair);
+  border-radius: var(--rayon-md);
+  padding: 0.9rem;
+  display: none;
+}
+
+.bloc-nom-affichage .bonjour-sidebar {
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.bloc-nom-affichage .nom-affiche {
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--texte);
+  margin: 0.15rem 0;
+}
+
+.btn-modifier-nom {
+  background: none;
+  border: 1px solid #ccc;
+  border-radius: var(--rayon-sm);
+  padding: 0.2rem 0.5rem;
+  font-size: 0.72rem;
+  cursor: pointer;
+  color: #555;
+  margin-top: 0.3rem;
+}
+
+.page-titre {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.2rem;
+}
+
+.page-sous-titre {
+  font-size: 0.82rem;
+  color: var(--texte-gris);
+  margin-bottom: 1.2rem;
+}
+
+.liste-fonctions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.carte-fonction {
+  background: var(--blanc);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon-lg);
+  padding: 1rem 1.2rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.carte-fonction .icone-f {
+  font-size: 1.4rem;
+  width: 36px;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.carte-fonction .titre-f {
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-bottom: 0.2rem;
+}
+
+.carte-fonction .desc-f {
+  font-size: 0.8rem;
+  color: var(--texte-gris);
+  line-height: 1.5;
+}
+
+.grille-jours {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.carte-jour {
+  border-radius: var(--rayon-lg);
+  padding: 0.9rem 0.5rem;
+  text-align: center;
+}
+
+.carte-jour .nom-jour {
+  font-size: 0.82rem;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+
+.carte-jour .val-jour {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.jour-vert  { background: #dcfce7; }
+.jour-orange{ background: #fef3c7; }
+.jour-rouge { background: #fee2e2; }
+
+.val-rouge  { color: #dc2626; }
+.val-vert   { color: #16a34a; }
+.val-orange { color: #d97706; }
+
+.titre-section-bilan {
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--texte-gris);
+  margin-bottom: 0.9rem;
+}
+
+.liste-barres {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.ligne-barre {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.ligne-barre .label-b {
+  font-size: 0.82rem;
+  width: 100px;
+  text-align: right;
+  flex-shrink: 0;
+  color: var(--texte-gris);
+}
+
+.barre-externe {
+  flex: 1;
+  background: var(--bordure);
+  border-radius: var(--rayon-rond);
+  height: 28px;
+  position: relative;
+  overflow: visible;
+}
+
+.barre-interne {
+  height: 100%;
+  border-radius: var(--rayon-rond);
+  display: flex;
+  align-items: center;
+  padding-left: 0.6rem;
+  position: relative;
+  min-width: 60px;
+}
+
+.barre-interne .val-barre {
+  font-size: 0.78rem;
+  font-weight: bold;
+  color: var(--blanc);
+  white-space: nowrap;
+}
+
+.carte-carbone-twin {
+  background: var(--vert-fonce);
+  color: var(--blanc);
+  border-radius: var(--rayon-xl);
+  padding: 1.2rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.carte-carbone-twin .globe { font-size: 2rem; }
+
+.carte-carbone-twin .twin-titre {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.carte-carbone-twin .twin-desc {
+  font-size: 0.78rem;
+  opacity: 0.7;
+}
+
+.carte-carbone-twin .twin-val {
+  margin-left: auto;
+  text-align: right;
+}
+
+.carte-carbone-twin .twin-chiffre {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--vert-clair);
+}
+
+.carte-carbone-twin .twin-unite {
+  font-size: 0.78rem;
+  opacity: 0.7;
+}
+
+.sous-titre-promo {
+  font-size: 0.82rem;
+  color: var(--texte-gris);
+  margin-bottom: 1.2rem;
+}
+
+.liste-classement {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.ligne-classement {
+  background: var(--blanc);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon-lg);
+  padding: 0.9rem 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.ligne-classement.moi {
+  border: 2px solid var(--vert-moyen);
+}
+
+.rang {
+  font-size: 1rem;
+  font-weight: bold;
+  width: 20px;
+  flex-shrink: 0;
+  color: var(--texte-gris);
+}
+
+.rang.moi { color: var(--vert-moyen); }
+
+.avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.88rem;
+  font-weight: bold;
+  color: var(--blanc);
+  flex-shrink: 0;
+}
+
+.nom-etudiant { flex: 1; font-size: 0.9rem; font-weight: 500; }
+.nom-etudiant.moi { color: var(--vert-moyen); }
+
+.kg-etudiant { font-size: 0.9rem; font-weight: bold; }
+.kg-etudiant.moi { color: var(--vert-moyen); }
+
+.carte-mediane {
+  background: var(--blanc);
+  border: 1px solid var(--bordure);
+  border-radius: var(--rayon-lg);
+  padding: 1rem 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.mediane-label { font-size: 0.78rem; color: var(--texte-gris); margin-bottom: 0.2rem; }
+.mediane-val   { font-size: 1.3rem; font-weight: bold; }
+.dessous-label { font-size: 0.78rem; color: var(--texte-gris); text-align: right; margin-bottom: 0.2rem; }
+.dessous-val   { font-size: 1.3rem; font-weight: bold; color: var(--vert-moyen); text-align: right; }

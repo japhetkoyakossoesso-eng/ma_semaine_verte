@@ -9,12 +9,14 @@ function afficherPage(page, lienClique) {
     lienClique.className = 'active';
   }
 
-  if (page === 'critere5') {
-    document.getElementById('page-accueil').style.display  = 'none';
-    document.getElementById('page-critere5').style.display = 'block';
-  } else {
-    document.getElementById('page-accueil').style.display  = 'block';
-    document.getElementById('page-critere5').style.display = 'none';
+  const pages = document.querySelectorAll('.page');
+  for (const p of pages) {
+    p.style.display = 'none';
+  }
+
+  const cible = document.getElementById('page-' + page);
+  if (cible !== null) {
+    cible.style.display = 'block';
   }
 }
 
@@ -46,9 +48,7 @@ function afficherTotalAccueil(valeur) {
 
 function afficherStatutAPI(statut) {
   const el = document.getElementById('statut-api');
-  if (el === null) {
-    return;
-  }
+  if (el === null) { return; }
   if (statut === 'connectee') {
     el.textContent = '✅ API ADEME connectée — données en direct';
     el.style.color = '#1a5c38';
@@ -57,7 +57,42 @@ function afficherStatutAPI(statut) {
     el.style.color = '#b45309';
   }
 }
+
 function afficherToggleEco(actif) {
   document.getElementById('btn-off').className = actif ? ''      : 'actif';
   document.getElementById('btn-on').className  = actif ? 'actif' : '';
+}
+
+function mettreAJourNom(nom) {
+  const elements = document.querySelectorAll('.nom-utilisateur');
+  for (const el of elements) {
+    el.textContent = nom;
+  }
+}
+
+function validerNom() {
+  const input = document.getElementById('input-nom');
+  const nom   = input.value.trim();
+
+  if (nom === '') {
+    input.style.borderColor = '#ef4444';
+    input.placeholder       = 'Entrez votre prénom !';
+    return;
+  }
+
+  nomUtilisateur = nom;
+
+  mettreAJourNom(nom);
+
+  mettreAJourAvatar(nom);
+
+  document.getElementById('form-nom').style.display      = 'none';
+  document.getElementById('affichage-nom').style.display = 'block';
+}
+
+function modifierNom() {
+  document.getElementById('form-nom').style.display      = 'block';
+  document.getElementById('affichage-nom').style.display = 'none';
+  document.getElementById('input-nom').value             = nomUtilisateur;
+  document.getElementById('input-nom').focus();
 }
