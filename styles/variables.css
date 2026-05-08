@@ -1,0 +1,31 @@
+
+:root {
+  --vert-fonce:   #1a3a28;
+  --vert-moyen:   #1a5c38;
+  --vert-clair:   #4ade80;
+  --vert-sidebar: #1a5c38;
+
+  --fond:         #f5f5f5;
+  --blanc:        #ffffff;
+  --bordure:      #e5e7eb;
+  --texte:        #1c1c1c;
+  --texte-gris:   #666666;
+  --texte-clair:  #999999;
+
+  --couleur-trajet:       #3b82f6;
+  --couleur-repas:        #f59e0b;
+  --couleur-numerique:    #8b5cf6;
+  --couleur-electro:      #22c55e;
+  --couleur-achats:       #f97316;
+
+  --marron:       #7c4a1e;
+  --jaune-clair:  #fef9c3;
+
+  --police: Arial, sans-serif;
+
+  --rayon-sm: 6px;
+  --rayon-md: 8px;
+  --rayon-lg: 10px;
+  --rayon-xl: 12px;
+  --rayon-rond: 99px;
+}
