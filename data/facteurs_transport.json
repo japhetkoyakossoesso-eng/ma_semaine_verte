@@ -1,0 +1,14 @@
+{
+  "source": "API Impact CO2 ADEME 2024",
+  "critere": 1,
+  "note": "Données disponibles via GET /api/v1/thematiques/ecv/4",
+  "transports": [
+    { "id": "voiture_essence", "nom": "Voiture thermique (essence)", "ecv": 0.193, "unite": "kgCO2e/km/passager" },
+    { "id": "voiture_diesel",  "nom": "Voiture thermique (diesel)",  "ecv": 0.168, "unite": "kgCO2e/km/passager" },
+    { "id": "voiture_elec",    "nom": "Voiture électrique",          "ecv": 0.019, "unite": "kgCO2e/km/passager" },
+    { "id": "bus",             "nom": "Bus urbain",                  "ecv": 0.113, "unite": "kgCO2e/km/passager" },
+    { "id": "train",           "nom": "Train intercités",            "ecv": 0.006, "unite": "kgCO2e/km/passager" },
+    { "id": "metro",           "nom": "Métro et tramway",            "ecv": 0.004, "unite": "kgCO2e/km/passager" },
+    { "id": "velo",            "nom": "Vélo et marche",              "ecv": 0.000, "unite": "kgCO2e/km/passager" }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "source": "Base Empreinte ADEME + Agribalyse 2024",
+  "critere": 2,
+  "note": "Données disponibles via GET /api/v1/thematiques/ecv/2",
+  "repas": [
+    { "id": "vegan",      "nom": "Repas vegan",             "ecv": 0.3, "unite": "kgCO2e/repas" },
+    { "id": "vegetarien", "nom": "Repas végétarien",        "ecv": 0.5, "unite": "kgCO2e/repas" },
+    { "id": "volaille",   "nom": "Repas avec volaille",     "ecv": 1.1, "unite": "kgCO2e/repas" },
+    { "id": "poisson",    "nom": "Repas avec poisson",      "ecv": 0.8, "unite": "kgCO2e/repas" },
+    { "id": "boeuf",      "nom": "Repas avec viande boeuf", "ecv": 5.0, "unite": "kgCO2e/repas" },
+    { "id": "cafe",       "nom": "Café expresso",           "ecv": 0.06,"unite": "kgCO2e/repas" }
+  ]
+}

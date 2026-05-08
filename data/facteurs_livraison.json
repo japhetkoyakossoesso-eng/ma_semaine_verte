@@ -1,0 +1,15 @@
+{
+  "source": "Base Empreinte ADEME 2024",
+  "critere": 5,
+  "livraisons": [
+    { "id": "colis",   "nom": "Colis standard", "icone": "📦", "ecv": 0.3,  "unite": "kgCO2e/colis" },
+    { "id": "express", "nom": "Express avion",  "icone": "✈️", "ecv": 2.5,  "unite": "kgCO2e/colis" }
+  ],
+  "vetements_statiques": [
+    { "id": "tshirt",      "nom": "T-shirt neuf",    "icone": "👕", "ecv": 5.0,  "unite": "kgCO2e/piece" },
+    { "id": "jean",        "nom": "Jean neuf",        "icone": "👖", "ecv": 25.0, "unite": "kgCO2e/piece" },
+    { "id": "robe",        "nom": "Robe / pull neuf", "icone": "👗", "ecv": 8.0,  "unite": "kgCO2e/piece" },
+    { "id": "secondemain", "nom": "Seconde main",     "icone": "♻️", "ecv": 0.5,  "unite": "kgCO2e/piece" }
+  ],
+  "note": "Les données vêtements sont aussi disponibles via l'API Impact CO2 endpoint /thematiques/ecv/5"
+}

@@ -1,0 +1,12 @@
+{
+  "source": "Base Empreinte ADEME 2024",
+  "critere": 4,
+  "note": "Données statiques — catégorie énergie domestique",
+  "usages": [
+    { "id": "douche_gaz",  "nom": "Douche 1min (chaudière gaz)",    "ecv": 0.070, "unite": "kgCO2e/min" },
+    { "id": "douche_elec", "nom": "Douche 1min (chauffe-eau élec)", "ecv": 0.030, "unite": "kgCO2e/min" },
+    { "id": "machine",     "nom": "Machine à laver 40°C",           "ecv": 0.600, "unite": "kgCO2e/cycle" },
+    { "id": "seche_linge", "nom": "Sèche-linge cycle standard",     "ecv": 1.800, "unite": "kgCO2e/cycle" },
+    { "id": "chauffage",   "nom": "Chauffage gaz 1h 20m²",          "ecv": 0.150, "unite": "kgCO2e/heure" }
+  ]
+}

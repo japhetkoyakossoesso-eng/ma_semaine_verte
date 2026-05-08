@@ -1,0 +1,14 @@
+{
+  "source": "API Impact CO2 ADEME 2024",
+  "critere": 3,
+  "note": "Données via GET /api/v1/thematiques/ecv/1 et /api/v1/thematiques/ecv/10",
+  "appareils": [
+    { "id": "ordi",     "nom": "Ordinateur portable",  "ecv": 156,  "unite": "kgCO2e/an" },
+    { "id": "smartphone","nom": "Smartphone",           "ecv": 30,   "unite": "kgCO2e/an" }
+  ],
+  "usages": [
+    { "id": "streaming","nom": "Streaming HD",         "ecv": 0.036,"unite": "kgCO2e/heure" },
+    { "id": "visio",    "nom": "Visioconférence",       "ecv": 0.150,"unite": "kgCO2e/heure" },
+    { "id": "recherche","nom": "Recherche web",         "ecv": 0.0002,"unite": "kgCO2e/requête" }
+  ]
+}
