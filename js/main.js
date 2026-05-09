@@ -33,6 +33,7 @@ function mettreAJourAvatar(nom) {
 document.addEventListener('DOMContentLoaded', function() {
 
   chargerVetements();
+
   const liens = document.querySelectorAll('nav a');
   for (const lien of liens) {
     lien.addEventListener('click', function(e) {
@@ -47,11 +48,14 @@ document.addEventListener('DOMContentLoaded', function() {
         afficherPage('bilan', lien);
       } else if (texte === 'Promo') {
         afficherPage('promo', lien);
+        
+        creerGraphiquePromo();
       } else {
         afficherPage('accueil', lien);
       }
     });
   }
+  
   const inputNom = document.getElementById('input-nom');
   if (inputNom !== null) {
     inputNom.addEventListener('keydown', function(e) {

@@ -16,8 +16,11 @@ let quantites = {
   express:     0
 };
 
+// Option eco-livraison (réduit les livraisons de 30%)
 let ecoLivraison = false;
 
+// Calcul de l'empreinte totale du critère 5
+// Formule : empreinte = quantité × ecv
 function calculerTotal() {
   let total = 0;
 
@@ -26,6 +29,7 @@ function calculerTotal() {
   total = total + quantites.robe        * ARTICLES.robe.ecv;
   total = total + quantites.secondemain * ARTICLES.secondemain.ecv;
 
+  // Livraisons avec option eco (-30%)
   let facteurEco = 1.0;
   if (ecoLivraison === true) {
     facteurEco = 0.7;

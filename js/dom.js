@@ -34,6 +34,7 @@ function allerAccueil() {
   afficherPage('accueil', lienAccueil);
 }
 
+
 function afficherQuantite(idArticle, valeur) {
   document.getElementById('qte-' + idArticle).textContent = valeur;
 }
@@ -85,6 +86,8 @@ function validerNom() {
   mettreAJourNom(nom);
 
   mettreAJourAvatar(nom);
+
+  mettreAJourGraphiquePromo();
 
   document.getElementById('form-nom').style.display      = 'none';
   document.getElementById('affichage-nom').style.display = 'block';
