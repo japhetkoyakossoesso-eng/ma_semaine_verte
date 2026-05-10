@@ -10,14 +10,14 @@
 
   <div class="container">
 
-    <!-- EN-TÊTE -->
+    
     <header>
       <p class="badge">Ma Semaine Verte</p>
       <h1>Douche &amp; Électroménager</h1>
       <p class="sous-titre">Critère 4 sur 5 — Habitudes domestiques</p>
     </header>
 
-    <!-- BARRE DE NAVIGATION (stepper) -->
+    
     <nav class="stepper">
       <div class="etape terminee">
         <div class="point">✓</div>
@@ -49,7 +49,7 @@
       </div>
     </nav>
 
-    <!-- BLOC 1 — DOUCHE -->
+    <!--  BLOC 1 — DOUCHE -->
     <section class="bloc" id="bloc-douche">
 
       <div class="bloc-entete" onclick="toggleBloc('douche')">
@@ -106,6 +106,7 @@
     </section>
 
     <!-- BLOC 2 — ÉLECTROMÉNAGER -->
+
     <section class="bloc" id="bloc-electro">
 
       <div class="bloc-entete" onclick="toggleBloc('electro')">
@@ -164,6 +165,7 @@
     </section>
 
     <!-- BLOC 3 — CHAUFFAGE -->
+   
     <section class="bloc" id="bloc-chauffage">
 
       <div class="bloc-entete" onclick="toggleBloc('chauffage')">
@@ -185,7 +187,7 @@
             <label class="label-champ" for="select-chauffage">Type de chauffage</label>
             <span class="statut-api" id="statut-api">⏳ Chargement API…</span>
           </div>
-          <select id="select-chauffage" onchange="calculerChauffage()">
+          <select id="select-chauffage" onchange="calculerChauffage_select()">
             <!-- Options injectées par JS via l'API ADEME -->
             <option value="150">Chauffage au gaz naturel</option>
             <option value="14">Chauffage électrique</option>
@@ -227,8 +229,6 @@
       </div>
     </section>
 
-
-    <!-- BILAN PARTIEL -->
     <section class="bilan">
       <h2>📊 Bilan du critère 4</h2>
 
@@ -255,14 +255,31 @@
 
     </section>
 
-    <!-- NAVIGATION -->
+    <!-- GRAPHIQUE -->
+    <section class="bloc" style="margin-top: 1rem;">
+      <div class="bloc-entete" onclick="toggleBloc('graphique')">
+        <div class="bloc-entete-gauche">
+          <span class="icone">📈</span>
+          <h2>Comparaison par poste</h2>
+        </div>
+        <div class="bloc-entete-droite">
+          <span class="chevron" id="chevron-graphique">▾</span>
+        </div>
+      </div>
+      <div class="bloc-corps" id="corps-graphique">
+        <canvas id="monGraphique"></canvas>
+      </div>
+    </section>
+
+    
     <div class="navigation">
       <button class="btn-nav btn-precedent">← Numérique</button>
       <button class="btn-nav btn-suivant">Achats &amp; Vêtements →</button>
     </div>
 
-  </div><!-- fin .container -->
+  </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="critere4.js"></script>
 
 </body>
