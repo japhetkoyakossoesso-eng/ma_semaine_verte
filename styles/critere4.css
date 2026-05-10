@@ -1,0 +1,566 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f0e8;
+  color: #1e2d1f;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* =====================
+   CONTENEUR PRINCIPAL
+   ===================== */
+.container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+  width: 100%;
+}
+
+/* =====================
+   EN-TÊTE
+   ===================== */
+header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid #c8dfc9;
+}
+
+.badge {
+  display: inline-block;
+  background-color: #3d5a3e;
+  color: white;
+  font-size: 0.75rem;
+  padding: 0.3rem 0.9rem;
+  border-radius: 20px;
+  margin-bottom: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+header h1 {
+  font-size: 1.8rem;
+  color: #3d5a3e;
+  margin-bottom: 0.3rem;
+  line-height: 1.2;
+}
+
+.sous-titre {
+  font-size: 0.9rem;
+  color: #7a9e7e;
+}
+
+/* =====================
+   STEPPER
+   ===================== */
+.stepper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin-bottom: 2rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  min-width: 0;
+}
+
+.etape {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 70px;
+  flex-shrink: 0;
+}
+
+.etape .point {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: bold;
+  background-color: #c8dfc9;
+  color: #7a9e7e;
+}
+
+.etape.terminee .point {
+  background-color: #3d5a3e;
+  color: white;
+}
+
+.etape.active .point {
+  background-color: #c17f52;
+  color: white;
+}
+
+.etape span {
+  font-size: 0.6rem;
+  color: #7a9e7e;
+  text-align: center;
+  white-space: normal;
+}
+
+.ligne {
+  height: 2px;
+  flex: 1;
+  min-width: 20px;
+  background-color: #c8dfc9;
+  margin-bottom: 14px;
+}
+
+.ligne.terminee {
+  background-color: #3d5a3e;
+}
+
+/* =====================
+   BLOCS
+   ===================== */
+.bloc {
+  background-color: white;
+  border: 1px solid #c8dfc9;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.bloc-entete {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.2rem;
+  background-color: #e8f0e9;
+  cursor: pointer;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.bloc-entete:hover {
+  background-color: #c8dfc9;
+}
+
+.bloc-entete-gauche {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-width: 0;
+}
+
+.bloc-entete-droite {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+
+.icone {
+  font-size: 1.2rem;
+}
+
+.bloc-entete h2 {
+  font-size: 1rem;
+  color: #1e2d1f;
+  font-weight: 600;
+}
+
+.pilule-co2 {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #3d5a3e;
+  background-color: #c8dfc9;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.chevron {
+  font-size: 0.9rem;
+  color: #7a9e7e;
+  transition: transform 0.3s;
+}
+
+.chevron.ouvert {
+  transform: rotate(180deg);
+}
+
+.bloc-corps {
+  padding: 1.2rem;
+  border-top: 1px solid #c8dfc9;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.bloc-corps.cache {
+  display: none;
+}
+
+/* =====================
+   CHAMPS
+   ===================== */
+.champ {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.label-champ {
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #5c4a32;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.info-champ {
+  font-size: 0.75rem;
+  color: #7a9e7e;
+  line-height: 1.4;
+}
+
+.label-ligne {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.statut-api {
+  font-size: 0.7rem;
+  color: #7a9e7e;
+  text-align: right;
+}
+
+/* =====================
+   TOGGLES
+   ===================== */
+.groupe-boutons {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.btn-toggle {
+  padding: 0.45rem 1rem;
+  border-radius: 8px;
+  border: 1.5px solid #c8dfc9;
+  background-color: white;
+  font-size: 0.85rem;
+  color: #1e2d1f;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-toggle:hover {
+  border-color: #7a9e7e;
+  background-color: #f5f0e8;
+}
+
+.btn-toggle.actif {
+  background-color: #3d5a3e;
+  color: white;
+  border-color: #3d5a3e;
+  font-weight: bold;
+}
+
+/* =====================
+   STEPPER CHAMP
+   ===================== */
+.stepper-champ {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.stepper-champ button {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1.5px solid #c8dfc9;
+  background-color: white;
+  font-size: 1.2rem;
+  color: #3d5a3e;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.stepper-champ button:hover {
+  background-color: #e8f0e9;
+}
+
+.stepper-champ span {
+  font-size: 1.2rem;
+  font-weight: bold;
+  min-width: 2rem;
+  text-align: center;
+}
+
+.unite {
+  font-size: 0.8rem !important;
+  color: #7a9e7e;
+  font-weight: normal !important;
+}
+
+/* =====================
+   SLIDERS
+   ===================== */
+.slider-champ {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.slider-champ input[type="range"] {
+  flex: 1;
+  min-width: 0;
+  height: 4px;
+  border-radius: 2px;
+  accent-color: #3d5a3e;
+  cursor: pointer;
+}
+
+.slider-champ span {
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: #3d5a3e;
+  min-width: 4rem;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.slider-bornes {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  color: #7a9e7e;
+}
+
+/* =====================
+   SELECT
+   ===================== */
+select {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  border: 1.5px solid #c8dfc9;
+  background-color: white;
+  font-size: 0.9rem;
+  color: #1e2d1f;
+  cursor: pointer;
+}
+
+select:focus {
+  outline: none;
+  border-color: #7a9e7e;
+}
+
+/* =====================
+   APERÇU CO2
+   ===================== */
+.apercu-co2 {
+  background-color: #e8f0e9;
+  border-left: 3px solid #3d5a3e;
+  border-radius: 8px;
+  padding: 0.8rem 1rem;
+  font-size: 0.85rem;
+  color: #5c4a32;
+  line-height: 1.5;
+}
+
+.apercu-co2 strong {
+  color: #3d5a3e;
+  font-size: 1rem;
+}
+
+/* =====================
+   BILAN
+   ===================== */
+.bilan {
+  background-color: #3d5a3e;
+  border-radius: 12px;
+  padding: 1.5rem;
+  color: white;
+  margin-top: 1.5rem;
+}
+
+.bilan h2 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.tableau-bilan {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+}
+
+.tableau-bilan tr {
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+
+.tableau-bilan tr:last-child {
+  border-bottom: none;
+}
+
+.tableau-bilan td {
+  padding: 0.5rem 0;
+}
+
+.tableau-bilan td:last-child {
+  text-align: right;
+  font-weight: bold;
+}
+
+.bilan-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-top: 0.8rem;
+  border-top: 1px solid rgba(255,255,255,0.3);
+  gap: 1rem;
+}
+
+.bilan-total span:last-child {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.bilan-equiv {
+  margin-top: 0.6rem;
+  text-align: center;
+  font-size: 0.75rem;
+  opacity: 0.7;
+  line-height: 1.4;
+}
+
+/* =====================
+   NAVIGATION
+   ===================== */
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.btn-nav {
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  border: none;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-precedent {
+  background-color: white;
+  border: 1.5px solid #c8dfc9;
+  color: #5c4a32;
+}
+
+.btn-precedent:hover {
+  background-color: #f5f0e8;
+}
+
+.btn-suivant {
+  background-color: #c17f52;
+  color: white;
+  flex: 1;
+}
+
+.btn-suivant:hover {
+  background-color: #a86d42;
+}
+
+/* =====================
+   RESPONSIVE MOBILE
+   ===================== */
+@media (max-width: 600px) {
+
+  .container {
+    padding: 1rem 1rem 3rem;
+  }
+
+  header {
+    margin-bottom: 1.5rem;
+  }
+
+  header h1 {
+    font-size: 1.4rem;
+  }
+
+  .sous-titre {
+    font-size: 0.8rem;
+  }
+
+  .stepper {
+    justify-content: flex-start;
+  }
+
+  .bloc-entete {
+    padding: 0.9rem;
+  }
+
+  .bloc-entete h2 {
+    font-size: 0.9rem;
+  }
+
+  .pilule-co2 {
+    font-size: 0.65rem;
+  }
+
+  .bloc-corps {
+    padding: 1rem;
+  }
+
+  .groupe-boutons {
+    flex-direction: column;
+  }
+
+  .btn-toggle {
+    width: 100%;
+  }
+
+  .slider-champ {
+    flex-wrap: wrap;
+  }
+
+  .slider-champ span {
+    min-width: auto;
+    width: 100%;
+    text-align: left;
+  }
+
+  .label-ligne {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navigation {
+    flex-direction: column;
+  }
+
+  .btn-nav {
+    width: 100%;
+  }
+
+  .bilan-total {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .bilan-total span:last-child {
+    font-size: 1.3rem;
+  }
+}
