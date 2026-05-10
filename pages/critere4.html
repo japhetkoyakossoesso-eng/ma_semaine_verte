@@ -1,16 +1,269 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8"/>
-  <title>Critère 4 — Ma Semaine Verte</title>
-  <link rel="stylesheet" href="../styles/variables.css"/>
-  <link rel="stylesheet" href="../styles/style.css"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ma Semaine Verte — Critère 4</title>
+  <link rel="stylesheet" href="critere4.css" />
 </head>
 <body>
-  <p>Page critère 4 — à développer par le membre du groupe.</p>
-  <script src="../js/calcul.js"></script>
-  <script src="../js/api.js"></script>
-  <script src="../js/dom.js"></script>
-  <script src="../js/main.js"></script>
+
+  <div class="container">
+
+    <!-- EN-TÊTE -->
+    <header>
+      <p class="badge">Ma Semaine Verte</p>
+      <h1>Douche &amp; Électroménager</h1>
+      <p class="sous-titre">Critère 4 sur 5 — Habitudes domestiques</p>
+    </header>
+
+    <!-- BARRE DE NAVIGATION (stepper) -->
+    <nav class="stepper">
+      <div class="etape terminee">
+        <div class="point">✓</div>
+        <span>Alimentation</span>
+      </div>
+      <div class="ligne terminee"></div>
+
+      <div class="etape terminee">
+        <div class="point">✓</div>
+        <span>Boissons</span>
+      </div>
+      <div class="ligne terminee"></div>
+
+      <div class="etape terminee">
+        <div class="point">✓</div>
+        <span>Numérique</span>
+      </div>
+      <div class="ligne"></div>
+
+      <div class="etape active">
+        <div class="point">4</div>
+        <span>Domicile</span>
+      </div>
+      <div class="ligne"></div>
+
+      <div class="etape">
+        <div class="point">5</div>
+        <span>Achats</span>
+      </div>
+    </nav>
+
+    <!-- BLOC 1 — DOUCHE -->
+    <section class="bloc" id="bloc-douche">
+
+      <div class="bloc-entete" onclick="toggleBloc('douche')">
+        <div class="bloc-entete-gauche">
+          <span class="icone">🚿</span>
+          <h2>Douche</h2>
+        </div>
+        <div class="bloc-entete-droite">
+          <span class="pilule-co2" id="co2-douche-pilule">0 g CO₂e</span>
+          <span class="chevron" id="chevron-douche">▾</span>
+        </div>
+      </div>
+
+      <div class="bloc-corps" id="corps-douche">
+
+        <!-- Chauffe-eau -->
+        <div class="champ">
+          <label class="label-champ">Type de chauffe-eau</label>
+          <div class="groupe-boutons" id="groupe-chauffe">
+            <button class="btn-toggle" data-valeur="gaz"        onclick="selectionnerToggle('chauffe', 'gaz',        this)">⛽ Gaz</button>
+            <button class="btn-toggle actif" data-valeur="electrique" onclick="selectionnerToggle('chauffe', 'electrique', this)">⚡ Électrique</button>
+          </div>
+          <p class="info-champ" id="info-chauffe">30 gCO₂e/min — électricité nucléaire française</p>
+        </div>
+
+        <!-- Nombre de douches -->
+        <div class="champ">
+          <label class="label-champ">Nombre de douches / semaine</label>
+          <div class="stepper-champ">
+            <button onclick="modifierStepper('nb-douches', -1)">−</button>
+            <span id="nb-douches">7</span>
+            <button onclick="modifierStepper('nb-douches', +1)">+</button>
+            <span class="unite">douches</span>
+          </div>
+        </div>
+
+        <!-- Durée -->
+        <div class="champ">
+          <label class="label-champ">Durée moyenne d'une douche</label>
+          <div class="slider-champ">
+            <input type="range" id="slider-duree" min="1" max="20" value="7"
+                   oninput="mettreAJourSlider('duree', this.value)" />
+            <span id="val-duree">7 min</span>
+          </div>
+          <div class="slider-bornes"><span>1 min</span><span>20 min</span></div>
+        </div>
+
+        <!-- Aperçu CO2 -->
+        <div class="apercu-co2" id="apercu-douche">
+          🌿 Émission estimée : <strong id="co2-douche-val">1 470 g CO₂e</strong>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- BLOC 2 — ÉLECTROMÉNAGER -->
+    <section class="bloc" id="bloc-electro">
+
+      <div class="bloc-entete" onclick="toggleBloc('electro')">
+        <div class="bloc-entete-gauche">
+          <span class="icone">🔌</span>
+          <h2>Électroménager</h2>
+        </div>
+        <div class="bloc-entete-droite">
+          <span class="pilule-co2" id="co2-electro-pilule">0 g CO₂e</span>
+          <span class="chevron" id="chevron-electro">▾</span>
+        </div>
+      </div>
+
+      <div class="bloc-corps cache" id="corps-electro">
+
+        <!-- Choix de l'appareil (alimenté par l'API) -->
+        <div class="champ">
+          <div class="label-ligne">
+            <label class="label-champ" for="select-electro">Appareil utilisé</label>
+            <span class="statut-api" id="statut-api-electro">⏳ Chargement API…</span>
+          </div>
+          <!-- Options injectées par JS via l'API ADEME, valeurs de secours en attendant -->
+          <select id="select-electro" onchange="changerAppareil()">
+            <option value="37.80">Bouilloire</option>
+            <option value="237.95">Cafetière à dosettes</option>
+            <option value="191.33">Cafetière filtre</option>
+            <option value="272.61">Four électrique</option>
+            <option value="460.79">Lave-vaisselle</option>
+            <option value="513.42">Lave-linge</option>
+            <option value="338.71">Réfrigérateur</option>
+            <option value="73.43">Aspirateur</option>
+            <option value="121.35">Micro-ondes</option>
+          </select>
+        </div>
+
+        <!-- Nombre d'utilisations par semaine -->
+        <div class="champ">
+          <label class="label-champ">Utilisations par semaine</label>
+          <div class="stepper-champ">
+            <button onclick="modifierStepper('nb-electro', -1)">−</button>
+            <span id="nb-electro">3</span>
+            <button onclick="modifierStepper('nb-electro', +1)">+</button>
+            <span class="unite">fois</span>
+          </div>
+        </div>
+
+        <!-- Info sur l'appareil sélectionné -->
+        <p class="info-champ" id="info-electro">ECV : 37.80 kgCO2e sur toute la durée de vie</p>
+
+        <!-- Aperçu CO2 -->
+        <div class="apercu-co2">
+          🌿 Émission estimée : <strong id="co2-electro-val">0 g CO₂e</strong>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- BLOC 3 — CHAUFFAGE -->
+    <section class="bloc" id="bloc-chauffage">
+
+      <div class="bloc-entete" onclick="toggleBloc('chauffage')">
+        <div class="bloc-entete-gauche">
+          <span class="icone">🌡️</span>
+          <h2>Chauffage</h2>
+        </div>
+        <div class="bloc-entete-droite">
+          <span class="pilule-co2" id="co2-chauffage-pilule">0 g CO₂e</span>
+          <span class="chevron" id="chevron-chauffage">▾</span>
+        </div>
+      </div>
+
+      <div class="bloc-corps cache" id="corps-chauffage">
+
+        <!-- Type de chauffage (alimenté par l'API) -->
+        <div class="champ">
+          <div class="label-ligne">
+            <label class="label-champ" for="select-chauffage">Type de chauffage</label>
+            <span class="statut-api" id="statut-api">⏳ Chargement API…</span>
+          </div>
+          <select id="select-chauffage" onchange="calculerChauffage()">
+            <!-- Options injectées par JS via l'API ADEME -->
+            <option value="150">Chauffage au gaz naturel</option>
+            <option value="14">Chauffage électrique</option>
+            <option value="5">Pompe à chaleur</option>
+            <option value="50">Réseau de chaleur urbain</option>
+            <option value="20">Poêle à granulés</option>
+            <option value="42">Poêle à bois</option>
+          </select>
+        </div>
+
+        <!-- Surface -->
+        <div class="champ">
+          <label class="label-champ">Surface du logement</label>
+          <div class="slider-champ">
+            <input type="range" id="slider-surface" min="9" max="80" value="25"
+                   oninput="mettreAJourSlider('surface', this.value)" />
+            <span id="val-surface">25 m²</span>
+          </div>
+          <div class="slider-bornes"><span>9 m²</span><span>80 m²</span></div>
+        </div>
+
+        <!-- Température de consigne -->
+        <div class="champ">
+          <label class="label-champ">Température de consigne</label>
+          <div class="slider-champ">
+            <input type="range" id="slider-temp-chauf" min="15" max="25" value="19"
+                   oninput="mettreAJourSlider('temp-chauf', this.value)" />
+            <span id="val-temp-chauf">19 °C</span>
+          </div>
+          <div class="slider-bornes"><span>15 °C</span><span>25 °C</span></div>
+          <p class="info-champ" id="info-temp-chauf">✅ 19 °C — recommandation ADEME</p>
+        </div>
+
+        <!-- Aperçu CO2 -->
+        <div class="apercu-co2">
+          🌿 Émission estimée : <strong id="co2-chauffage-val">0 g CO₂e</strong>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- BILAN PARTIEL -->
+    <section class="bilan">
+      <h2>📊 Bilan du critère 4</h2>
+
+      <table class="tableau-bilan">
+        <tr>
+          <td>🚿 Douche</td>
+          <td id="bilan-douche">0 g CO₂e</td>
+        </tr>
+        <tr>
+          <td>🔌 Électroménager</td>
+          <td id="bilan-electro">0 g CO₂e</td>
+        </tr>
+        <tr>
+          <td>🌡️ Chauffage</td>
+          <td id="bilan-chauffage">0 g CO₂e</td>
+        </tr>
+      </table>
+
+      <div class="bilan-total">
+        <span>Total semaine</span>
+        <span id="bilan-total">0 g CO₂e</span>
+      </div>
+
+
+    </section>
+
+    <!-- NAVIGATION -->
+    <div class="navigation">
+      <button class="btn-nav btn-precedent">← Numérique</button>
+      <button class="btn-nav btn-suivant">Achats &amp; Vêtements →</button>
+    </div>
+
+  </div><!-- fin .container -->
+
+  <script src="critere4.js"></script>
+
 </body>
 </html>
