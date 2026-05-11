@@ -1,3 +1,17 @@
+/*
+ * Assistance IA (Claude)
+ *
+ * Les parties suivantes ont été réalisées avec l'aide de l'IA :
+ *
+ * - Structure générale du fichier JS et découpage en fonctions
+ * - Formule de calcul électroménager : répartition de l'ECV sur 520 semaines
+ *   (10 ans × 52 semaines) et conversion kgCO2e → gCO2e, ce qui n'était
+ *   pas évident à déduire seul depuis la documentation de l'API ADEME
+ * - Syntaxe XMLHttpRequest (open / onload / onerror / send) et parsing
+ *   de la réponse JSON avec JSON.parse(xhr.responseText)
+ * - Remplissage dynamique des <select> via createElement et appendChild
+ */
+
 // ---- VARIABLES ----
 
 // Douche
@@ -63,6 +77,8 @@ function mettreAJour() {
   document.getElementById("bilan-electro").textContent   = afficherCO2(e);
   document.getElementById("bilan-chauffage").textContent = afficherCO2(c);
   document.getElementById("bilan-total").textContent     = afficherCO2(total);
+
+  mettreAJourGraphique(d, e, c);
 }
 
 
@@ -164,7 +180,7 @@ function changerAppareil() {
 
 // ---- API ADEME ----
 
-// Chauffage : /api/v1/chauffage
+
 function chargerDonneesAPI() {
   document.getElementById("statut-api").textContent = "Chargement...";
   var xhr = new XMLHttpRequest();
@@ -230,8 +246,63 @@ function remplirSelectElectro(liste) {
 }
 
 
+// ---- GRAPHIQUE Chart.js ----
+
+var monGraphique = null;
+
+function creerGraphique() {
+  var ctx = document.getElementById("monGraphique").getContext("2d");
+
+  monGraphique = new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: ["🚿 Douche", "🔌 Électroménager", "🌡️ Chauffage"],
+      datasets: [{
+        label: "Émissions (g CO2e)",
+        data: [0, 0, 0],
+        backgroundColor: ["#7a9e7e", "#c17f52", "#3d5a3e"],
+        borderRadius: 6
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              var val = context.parsed.y;
+              return val >= 1000
+                ? (val / 1000).toFixed(2) + " kg CO2e"
+                : Math.round(val) + " g CO2e";
+            }
+          }
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            callback: function(val) {
+              return val >= 1000 ? (val / 1000).toFixed(1) + " kg" : val + " g";
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+function mettreAJourGraphique(d, e, c) {
+  if (monGraphique === null) return;
+  monGraphique.data.datasets[0].data = [d, e, c];
+  monGraphique.update();
+}
+
+
 // ---- INITIALISATION ----
 
+creerGraphique();
 mettreAJour();
 chargerDonneesAPI();
 chargerDonneesElectro();
