@@ -1,16 +1,270 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
+
 <head>
-  <meta charset="utf-8"/>
+  <meta charset="utf-8" />
+
   <title>Critère 2 — Ma Semaine Verte</title>
-  <link rel="stylesheet" href="../styles/variables.css"/>
-  <link rel="stylesheet" href="../styles/style.css"/>
+
+  <link rel="stylesheet" href="critere2.css" />
+  <link rel="stylesheet" href="../styles/variables.css" />
+  <link rel="stylesheet" href="../styles/critere2.css" />
 </head>
+
 <body>
-  <p>Page critère 2 — à développer par le membre du groupe.</p>
-  <script src="../js/calcul.js"></script>
+
+  <!-- NAVIGATION -->
+  <nav class="app-nav">
+
+    <a href="#">Accueil</a>
+    <a href="#">Fonctions</a>
+    <a href="#">C1 Trajet</a>
+
+    <a href="#" class="active">
+      C2 Repas
+    </a>
+
+    <a href="#">C3 Num.</a>
+    <a href="#">C4 Elec.</a>
+    <a href="#">C5 Achats</a>
+    <a href="#">Bilan</a>
+
+  </nav>
+
+  <!-- PAGE -->
+  <div class="page-wrapper">
+
+    <!-- HEADER -->
+    <div class="page-header">
+
+      <h1>
+        Critère 2 — Repas et alimentation
+      </h1>
+
+      <p>
+        Base Empreinte ADEME + API Impact CO2
+      </p>
+
+      <div class="api-status loading"
+        id="api-status-badge">
+
+        <div class="dot dot-loading"
+          id="api-dot">
+        </div>
+
+        <span id="api-status-text">
+          Connexion à l'API Impact CO2…
+        </span>
+
+      </div>
+
+    </div>
+
+    <!-- ETAPES -->
+    <div class="steps">
+
+      <div class="step done">
+
+        <div class="step-num">
+          ✓
+        </div>
+
+        <span>
+          Trajet
+        </span>
+
+      </div>
+
+      <div class="step-line"></div>
+
+      <div class="step active">
+
+        <div class="step-num">
+          2
+        </div>
+
+        <span>
+          Repas
+        </span>
+
+      </div>
+
+      <div class="step-line"></div>
+
+      <div class="step">
+
+        <div class="step-num">
+          3
+        </div>
+
+        <span>
+          Num.
+        </span>
+
+      </div>
+
+    </div>
+
+    <!-- ALERTE -->
+    <div id="alert-21"
+      class="alert">
+
+      ⚠️ Maximum atteint : 21 repas.
+
+    </div>
+
+    <!-- REPAS -->
+    <div class="card">
+
+      <div class="card-title">
+        Repas de la semaine
+      </div>
+
+      <div class="meal-grid"
+        id="meal-grid">
+      </div>
+
+    </div>
+
+    <!-- CAFE -->
+    <div class="card">
+
+      <div class="card-title">
+        Café
+      </div>
+
+      <div class="cafe-row">
+
+        <div>
+
+          <div class="cafe-label">
+            Cafés par jour
+          </div>
+
+          <div class="cafe-sublabel">
+            0,06 kgCO₂e × cafés/j × 7 jours
+          </div>
+
+        </div>
+
+        <div class="counter">
+
+          <button class="cnt-btn"
+            onclick="changeCafe(-1)">
+            −
+          </button>
+
+          <span class="cnt-val"
+            id="cafe-val">
+            0
+          </span>
+
+          <button class="cnt-btn"
+            onclick="changeCafe(1)">
+            +
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- FORMULE -->
+    <div class="card">
+
+      <div class="card-title">
+        Formule de calcul — ADEME
+      </div>
+
+      <div class="formula-box">
+
+        <strong>
+          Empreinte (kgCO₂e)
+        </strong>
+
+        =
+        Σ (nb repas × facteur d'émission)
+        +
+        cafés × 7 × 0,06
+
+        <br>
+
+        <strong>
+          Exemple :
+        </strong>
+
+        2 bœuf × 5,00
+        +
+        3 végétarien × 0,50
+        +
+        7 cafés × 0,06
+
+        =
+        <span class="hl">
+          11,92 kgCO₂e
+        </span>
+
+      </div>
+
+    </div>
+
+    <!-- RESULTATS -->
+    <div class="total-card">
+
+      <div class="total-label">
+        Empreinte repas — semaine en cours
+      </div>
+
+      <div class="total-num"
+        id="total-num">
+
+        0.00
+
+      </div>
+
+      <div class="total-unit">
+        kgCO₂e
+      </div>
+
+      <div class="result-badge badge-green"
+        id="result-badge">
+
+        Saisissez vos repas pour voir votre bilan
+
+      </div>
+
+      <div class="divider"
+        id="bars-divider"
+        style="display:none">
+      </div>
+
+      <div id="bars-container"></div>
+
+    </div>
+
+    <!-- BOUTONS -->
+    <div class="nav-btns">
+
+      <button class="nav-btn">
+        ← Trajet
+      </button>
+
+      <button class="nav-btn primary">
+        Suivant → Numérique
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- SCRIPT -->
+  <script src="critere2.js"></script>
   <script src="../js/api.js"></script>
+  <script src="../js/calcul.js"></script>
   <script src="../js/dom.js"></script>
+  <script src="../js/critere2.js"></script>
   <script src="../js/main.js"></script>
+
 </body>
 </html>
