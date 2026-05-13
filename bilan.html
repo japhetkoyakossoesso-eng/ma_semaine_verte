@@ -2,14 +2,48 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Bilan — Ma Semaine Verte</title>
   <link rel="stylesheet" href="styles/variables.css"/>
   <link rel="stylesheet" href="styles/style.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 </head>
 <body>
-  <p>Page bilan hebdomadaire — à développer.</p>
-  <script src="js/calcul.js"></script>
-  <script src="js/dom.js"></script>
-  <script src="js/bilan.js"></script>
+<nav id="navbar">
+  <a href="index.html">Accueil</a>
+  <a href="index.html#fonctions">Fonctions</a>
+  <a href="pages/critere1.html">C1 Trajet</a>
+  <a href="pages/critere2.html">C2 Repas</a>
+  <a href="pages/critere3.html">C3 Num.</a>
+  <a href="pages/critere4.html">C4 Elec.</a>
+  <a href="pages/critere5.html">C5 Achats</a>
+  <a href="bilan.html" class="active">Bilan</a>
+  <a href="index.html#promo">Promo</a>
+</nav>
+<div class="page page-bilan-finale">
+  <h1>Bilan hebdomadaire</h1>
+  <p class="sous">Tous critères — semaine en cours</p>
+  <div class="carte-semaine">
+    <div class="bonjour">Total de la semaine</div>
+    <span class="total" id="total-bilan-val">0.0</span><span class="unite">kgCO2e</span>
+    <div class="barre-nationale"><div class="remplissage" id="barre-nationale-bilan"></div></div>
+    <div class="mention" id="mention-nationale">0% de la moyenne nationale (39 kgCO2e/sem.)</div>
+  </div>
+  <div class="grille-jours" id="grille-jours-bilan"></div>
+  <div class="card">
+    <h2>Répartition par critère</h2>
+    <div class="ligne-barre"><div class="label-b">Trajet</div><div class="barre-externe"><div class="barre-interne" id="barre-trajet" style="background:var(--couleur-trajet)"><span class="val-barre" id="val-barre-trajet">0.0 kg</span></div></div></div>
+    <div class="ligne-barre"><div class="label-b">Repas</div><div class="barre-externe"><div class="barre-interne" id="barre-repas" style="background:var(--couleur-repas)"><span class="val-barre" id="val-barre-repas">0.0 kg</span></div></div></div>
+    <div class="ligne-barre"><div class="label-b">Numérique</div><div class="barre-externe"><div class="barre-interne" id="barre-numerique" style="background:var(--couleur-numerique)"><span class="val-barre" id="val-barre-numerique">0.0 kg</span></div></div></div>
+    <div class="ligne-barre"><div class="label-b">Électroménager</div><div class="barre-externe"><div class="barre-interne" id="barre-electromenager" style="background:var(--couleur-electro)"><span class="val-barre" id="val-barre-electromenager">0.0 kg</span></div></div></div>
+    <div class="ligne-barre"><div class="label-b">Achats</div><div class="barre-externe"><div class="barre-interne" id="barre-achats" style="background:var(--couleur-achats)"><span class="val-barre" id="val-barre-achats">0.0 kg</span></div></div></div>
+  </div>
+  <div class="card"><h2>📊 Graphique comparatif</h2><canvas id="graphique-bilan" height="220"></canvas></div>
+  <div class="carte-carbone-twin"><div class="globe">🌍</div><div><div class="twin-titre">Carbone Twin</div><div class="twin-desc">Si toute l'humanité vivait comme toi cette semaine...</div></div><div class="twin-val"><div class="twin-chiffre" id="twin-chiffre">0.0</div><div class="twin-unite">planètes</div></div></div>
+  <div class="nav-bas"><button class="btn-precedent" onclick="window.location.href='pages/critere5.html'">← Modifier les critères</button><button class="btn-suivant" onclick="window.location.href='index.html#promo'">Voir la promo →</button></div>
+</div>
+<script src="js/main.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/bilan.js"></script>
 </body>
 </html>

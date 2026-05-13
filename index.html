@@ -11,15 +11,15 @@
 <body>
 
 <nav id="navbar">
-  <a href="#" class="active">Accueil</a>
-  <a href="#">Fonctions</a>
-  <a href="#">C1 Trajet</a>
-  <a href="#">C2 Repas</a>
-  <a href="#">C3 Num.</a>
-  <a href="#">C4 Elec.</a>
-  <a href="#">C5 Achats</a>
-  <a href="#">Bilan</a>
-  <a href="#">Promo</a>
+  <a href="index.html" class="active">Accueil</a>
+  <a href="#fonctions">Fonctions</a>
+  <a href="pages/critere1.html">C1 Trajet</a>
+  <a href="pages/critere2.html">C2 Repas</a>
+  <a href="pages/critere3.html">C3 Num.</a>
+  <a href="pages/critere4.html">C4 Elec.</a>
+  <a href="pages/critere5.html">C5 Achats</a>
+  <a href="bilan.html">Bilan</a>
+  <a href="index.html#promo">Promo</a>
 </nav>
 
 <div class="layout">
@@ -62,28 +62,28 @@
       </div>
 
       <div class="grille-criteres">
-        <div class="carte-critere">
+        <div class="carte-critere" onclick="window.location.href='pages/critere1.html'" role="button" tabindex="0">
           <div class="nom">🚗 Trajet</div>
           <div class="valeur">14.5 kg</div>
           <div class="barre-critere">
             <div class="fill" style="background:var(--couleur-trajet);width:42%"></div>
           </div>
         </div>
-        <div class="carte-critere">
+        <div class="carte-critere" onclick="window.location.href='pages/critere2.html'" role="button" tabindex="0">
           <div class="nom">🍽️ Repas</div>
           <div class="valeur">12.8 kg</div>
           <div class="barre-critere">
             <div class="fill" style="background:var(--couleur-repas);width:37%"></div>
           </div>
         </div>
-        <div class="carte-critere">
+        <div class="carte-critere" onclick="window.location.href='pages/critere3.html'" role="button" tabindex="0">
           <div class="nom">💻 Numerique</div>
           <div class="valeur">2.7 kg</div>
           <div class="barre-critere">
             <div class="fill" style="background:var(--couleur-numerique);width:20%"></div>
           </div>
         </div>
-        <div class="carte-critere">
+        <div class="carte-critere" onclick="window.location.href='pages/critere4.html'" role="button" tabindex="0">
           <div class="nom">🔌 Electromenager</div>
           <div class="valeur">4.2 kg</div>
           <div class="barre-critere">
@@ -107,7 +107,7 @@
       </div>
 
     </div>
-  
+    
     <div id="page-fonctions" class="page" style="display:none;">
 
       <div class="page-titre">Fonctionnalites generales</div>
@@ -173,7 +173,7 @@
 
       </div>
     </div>
-   
+  
     <div id="page-bilan" class="page" style="display:none;">
 
       <div class="page-titre">Bilan hebdomadaire</div>
@@ -269,68 +269,45 @@
     <div id="page-promo" class="page" style="display:none;">
 
       <div class="page-titre">Ma promo cette semaine</div>
-      <div class="sous-titre-promo">Classement anonyme — 24 etudiants actifs</div>
+      <div class="sous-titre-promo">
+        Classement du groupe — 5 membres
+        <span style="font-size:0.75rem;color:#888;display:block;margin-top:0.2rem;">
+          Les autres membres sont anonymisés. Entrez votre prénom pour vous identifier.
+        </span>
+      </div>
 
-      <div class="liste-classement">
-
-        <div class="ligne-classement">
-          <div class="rang">1</div>
-          <div class="avatar" style="background:#a78bfa;">A</div>
-          <div class="nom-etudiant">Etudiant A</div>
-          <div class="kg-etudiant">18.3 kg</div>
+      <div id="liste-classement" class="liste-classement">
+        <div style="padding:1rem;text-align:center;color:#888;font-size:0.85rem;">
+          Chargement du classement...
         </div>
-
-        <div class="ligne-classement">
-          <div class="rang">2</div>
-          <div class="avatar" style="background:#fb923c;">B</div>
-          <div class="nom-etudiant">Etudiant B</div>
-          <div class="kg-etudiant">21.7 kg</div>
-        </div>
-
-        <div class="ligne-classement moi">
-          <div class="rang moi">3</div>
-          <div class="avatar" style="background:#86efac;color:#1a5c38;" id="avatar-moi">J</div>
-          <div class="nom-etudiant moi">Toi (<span class="nom-utilisateur">—</span>)</div>
-          <div class="kg-etudiant moi">34.7 kg</div>
-        </div>
-
-        <div class="ligne-classement">
-          <div class="rang">4</div>
-          <div class="avatar" style="background:#fca5a5;">C</div>
-          <div class="nom-etudiant">Etudiant C</div>
-          <div class="kg-etudiant">27.5 kg</div>
-        </div>
-
-        <div class="ligne-classement">
-          <div class="rang">5</div>
-          <div class="avatar" style="background:#d1d5db;color:#444;">D</div>
-          <div class="nom-etudiant">Etudiant D</div>
-          <div class="kg-etudiant">31.2 kg</div>
-        </div>
-
       </div>
 
       <div class="carte-mediane">
         <div>
-          <div class="mediane-label">Mediane promo</div>
-          <div class="mediane-val">29.8 kg</div>
+          <div class="mediane-label">Mediane du groupe</div>
+          <div class="mediane-val" id="mediane-val">— kg</div>
         </div>
         <div>
           <div class="dessous-label">Tu es en dessous de</div>
-          <div class="dessous-val">19%</div>
+          <div class="dessous-val" id="dessous-val">—%</div>
         </div>
       </div>
 
+      <div class="nav-bas" style="margin-bottom:1rem;">
+        <button class="btn-precedent btn-retour-accueil-promo" onclick="afficherPage('accueil', document.querySelector('nav a[href=\'index.html\']'))">← Retour à l'accueil</button>
+      </div>
+
       <div class="carte-graphique-promo">
-        <div class="titre-graphique">📊 Comparaison visuelle de la promo</div>
+        <div class="titre-graphique">📊 Comparaison visuelle du groupe</div>
         <div class="legende-graphique">
-          La ligne rouge pointillée représente la moyenne nationale (39 kgCO2e/sem.)
+          Votre barre est en vert. La ligne rouge pointillée = moyenne nationale (39 kgCO2e/sem.).
+          Les totaux viennent du fichier <code>data/promo.json</code> mis à jour par le groupe.
         </div>
         <canvas id="graphique-promo"></canvas>
       </div>
 
     </div>
-   
+  
     <div id="page-critere5" class="page" style="display:none;">
 
       <div class="entete-critere">
@@ -490,11 +467,6 @@
 
 </div>
 
-<script src="js/calcul.js"></script>
-<script src="js/api.js"></script>
-<script src="js/dom.js"></script>
-<script src="js/charts.js"></script>
 <script src="js/main.js"></script>
-
 </body>
 </html>

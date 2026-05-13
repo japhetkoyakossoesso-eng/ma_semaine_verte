@@ -2,10 +2,115 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8"/>
-  <meta http-equiv="refresh" content="0; url=../index.html"/>
-  <title>Critère 5 — Ma Semaine Verte</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="../styles/variables.css"/>
+  <link rel="stylesheet" href="../styles/style.css"/>
+  <title>C5 Achats — Ma Semaine Verte</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 </head>
 <body>
-  <p>Redirection vers <a href="../index.html">Ma Semaine Verte</a>...</p>
+
+<nav id="navbar">
+  <a href="../index.html">Accueil</a>
+  <a href="../index.html#fonctions">Fonctions</a>
+  <a href="critere1.html">C1 Trajet</a>
+  <a href="critere2.html">C2 Repas</a>
+  <a href="critere3.html">C3 Num.</a>
+  <a href="critere4.html">C4 Elec.</a>
+  <a href="critere5.html" class="active">C5 Achats</a>
+  <a href="../bilan.html">Bilan</a>
+  <a href="../index.html#promo">Promo</a>
+</nav>
+
+<div class="page-c5">
+
+  <h1>Critère 5 — Achats en ligne &amp; Vêtements</h1>
+  <p class="subtitle-c5">Koyakosso Esso Japhet — Base Empreinte ADEME v23.6</p>
+  <div id="statut-api" class="statut-c5"></div>
+
+  <div class="stepper-c5">
+    <div class="sc"><span class="sn">1</span><span>Trajet</span></div>
+    <div class="sl"></div>
+    <div class="sc"><span class="sn">2</span><span>Repas</span></div>
+    <div class="sl"></div>
+    <div class="sc"><span class="sn">3</span><span>Num.</span></div>
+    <div class="sl"></div>
+    <div class="sc"><span class="sn">4</span><span>Elec.</span></div>
+    <div class="sl"></div>
+    <div class="sc active"><span class="sn actif">5</span><span>Achats</span></div>
+  </div>
+
+  <div class="card-c5">
+    <div class="titre-c5">Vêtements achetés cette semaine</div>
+    <div class="ligne-art">
+      <div class="icone-a">👕</div>
+      <div class="info-a"><div class="nom-a">T-shirt neuf</div><div class="ecv-a">5 kgCO2e/pièce</div></div>
+      <div class="cpt"><button onclick="changer('tshirt',-1)">−</button><span id="qte-tshirt">0</span><button onclick="changer('tshirt',+1)">+</button></div>
+    </div>
+    <div class="ligne-art">
+      <div class="icone-a">👖</div>
+      <div class="info-a"><div class="nom-a">Jean neuf</div><div class="ecv-a">25 kgCO2e/pièce</div></div>
+      <div class="cpt"><button onclick="changer('jean',-1)">−</button><span id="qte-jean">0</span><button onclick="changer('jean',+1)">+</button></div>
+    </div>
+    <div class="ligne-art">
+      <div class="icone-a">👗</div>
+      <div class="info-a"><div class="nom-a">Robe / pull neuf</div><div class="ecv-a">8 kgCO2e/pièce</div></div>
+      <div class="cpt"><button onclick="changer('robe',-1)">−</button><span id="qte-robe">0</span><button onclick="changer('robe',+1)">+</button></div>
+    </div>
+    <div class="ligne-art">
+      <div class="icone-a">♻️</div>
+      <div class="info-a"><div class="nom-a">Seconde main</div><div class="ecv-a">0.5 kgCO2e/pièce</div></div>
+      <div class="cpt"><button onclick="changer('secondemain',-1)">−</button><span id="qte-secondemain">0</span><button onclick="changer('secondemain',+1)">+</button></div>
+    </div>
+  </div>
+
+  <div class="card-c5">
+    <div class="titre-c5">Livraisons reçues cette semaine</div>
+    <div class="ligne-art">
+      <div class="icone-a">📦</div>
+      <div class="info-a"><div class="nom-a">Colis standard</div><div class="ecv-a">0.3 kgCO2e/colis</div></div>
+      <div class="cpt"><button onclick="changer('colis',-1)">−</button><span id="qte-colis">0</span><button onclick="changer('colis',+1)">+</button></div>
+    </div>
+    <div class="ligne-art">
+      <div class="icone-a">✈️</div>
+      <div class="info-a"><div class="nom-a">Express avion</div><div class="ecv-a">2.5 kgCO2e/colis</div></div>
+      <div class="cpt"><button onclick="changer('express',-1)">−</button><span id="qte-express">0</span><button onclick="changer('express',+1)">+</button></div>
+    </div>
+  </div>
+
+  <div class="card-c5">
+    <div class="titre-c5">Option éco-livraison</div>
+    <div class="toggle-row">
+      <div class="icone-a">🌿</div>
+      <div class="info-a"><div class="nom-a">Mode éco-livraison</div><div class="ecv-a">Réduit l'impact livraisons de 30%</div></div>
+      <div class="toggle-grp">
+        <button id="btn-off" class="actif" onclick="setEco(false)">Off</button>
+        <button id="btn-on"  onclick="setEco(true)">On</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-c5">
+    <div class="titre-c5">📊 Répartition de vos achats</div>
+    <canvas id="graphique-c5" height="220"></canvas>
+  </div>
+
+  <div class="total-c5">
+    <div>
+      <div class="total-label-c5">Empreinte achats (semaine)</div>
+      <span class="total-big-c5" id="total-critere5">0.0</span>
+      <span class="total-unit-c5">kgCO2e</span>
+    </div>
+    <button class="btn-saisir-c5">Saisir vos achats</button>
+  </div>
+
+  <div class="nav-c5">
+    <button onclick="window.location.href='critere4.html'">← Electroménager</button>
+    <button class="btn-suiv-c5" onclick="window.location.href='../bilan.html'">Voir mon bilan →</button>
+  </div>
+
+</div>
+<script src="../js/charts.js"></script>
+<script src="../js/main.js"></script>
 </body>
 </html>

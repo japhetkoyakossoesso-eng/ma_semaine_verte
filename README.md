@@ -16,9 +16,9 @@ https://mi-git.univ-tlse2.fr/japhet.koyakosso-ess/ma_semaine_verte.git
 | Nom | Rôle principal |
 |-----|---------------|
 | Koyakosso Esso Japhet | Chef de projet · Critère 5 (Achats & vêtements) |
-| Kape Amani Parfait | Critère 1 (Transport) |
-| Kaba Ismaël N'Fallah | Critère 2 (Alimentation) |
-| Cherigui Boussad | Critère 3 (Numérique) |
+| Kape Amani Parfait | Critère 2 (Alimentation)  |
+| Kaba Ismaël N'Fallah | Critère 3 (Numérique)|
+| Cherigui Boussad | Critère 1 (Transport)  |
 | El Abi Abdellah | Critère 4 (Douche & électroménager) |
 
 ---

@@ -1,270 +1,108 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-
 <head>
-  <meta charset="utf-8" />
-
-  <title>Critère 2 — Ma Semaine Verte</title>
-
-  <link rel="stylesheet" href="critere2.css" />
-  <link rel="stylesheet" href="../styles/variables.css" />
-  <link rel="stylesheet" href="../styles/critere2.css" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="../styles/variables.css"/>
+  <link rel="stylesheet" href="../styles/style.css"/>
+  <title>C2 Repas — Ma Semaine Verte</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 </head>
-
 <body>
 
-  <!-- NAVIGATION -->
-  <nav class="app-nav">
+<nav id="navbar">
+  <a href="../index.html">Accueil</a>
+  <a href="../index.html#fonctions">Fonctions</a>
+  <a href="critere1.html">C1 Trajet</a>
+  <a href="critere2.html" class="active">C2 Repas</a>
+  <a href="critere3.html">C3 Num.</a>
+  <a href="critere4.html">C4 Elec.</a>
+  <a href="critere5.html">C5 Achats</a>
+  <a href="../bilan.html">Bilan</a>
+  <a href="../index.html#promo">Promo</a>
+</nav>
 
-    <a href="#">Accueil</a>
-    <a href="#">Fonctions</a>
-    <a href="#">C1 Trajet</a>
+<div class="page-wrapper">
 
-    <a href="#" class="active">
-      C2 Repas
-    </a>
-
-    <a href="#">C3 Num.</a>
-    <a href="#">C4 Elec.</a>
-    <a href="#">C5 Achats</a>
-    <a href="#">Bilan</a>
-
-  </nav>
-
-  <!-- PAGE -->
-  <div class="page-wrapper">
-
-    <!-- HEADER -->
-    <div class="page-header">
-
-      <h1>
-        Critère 2 — Repas et alimentation
-      </h1>
-
-      <p>
-        Base Empreinte ADEME + API Impact CO2
-      </p>
-
-      <div class="api-status loading"
-        id="api-status-badge">
-
-        <div class="dot dot-loading"
-          id="api-dot">
-        </div>
-
-        <span id="api-status-text">
-          Connexion à l'API Impact CO2…
-        </span>
-
-      </div>
-
+  <div class="page-entete">
+    <h1>Critère 2 — Repas et alimentation</h1>
+    <p>Kape Amani Parfait — Base Empreinte ADEME + API Impact CO2</p>
+    <div class="api-status chargement" id="api-status-badge">
+      <div class="dot dot-loading" id="api-dot"></div>
+      <span id="api-status-text">Connexion à l'API Impact CO2...</span>
     </div>
-
-    <!-- ETAPES -->
-    <div class="steps">
-
-      <div class="step done">
-
-        <div class="step-num">
-          ✓
-        </div>
-
-        <span>
-          Trajet
-        </span>
-
-      </div>
-
-      <div class="step-line"></div>
-
-      <div class="step active">
-
-        <div class="step-num">
-          2
-        </div>
-
-        <span>
-          Repas
-        </span>
-
-      </div>
-
-      <div class="step-line"></div>
-
-      <div class="step">
-
-        <div class="step-num">
-          3
-        </div>
-
-        <span>
-          Num.
-        </span>
-
-      </div>
-
-    </div>
-
-    <!-- ALERTE -->
-    <div id="alert-21"
-      class="alert">
-
-      ⚠️ Maximum atteint : 21 repas.
-
-    </div>
-
-    <!-- REPAS -->
-    <div class="card">
-
-      <div class="card-title">
-        Repas de la semaine
-      </div>
-
-      <div class="meal-grid"
-        id="meal-grid">
-      </div>
-
-    </div>
-
-    <!-- CAFE -->
-    <div class="card">
-
-      <div class="card-title">
-        Café
-      </div>
-
-      <div class="cafe-row">
-
-        <div>
-
-          <div class="cafe-label">
-            Cafés par jour
-          </div>
-
-          <div class="cafe-sublabel">
-            0,06 kgCO₂e × cafés/j × 7 jours
-          </div>
-
-        </div>
-
-        <div class="counter">
-
-          <button class="cnt-btn"
-            onclick="changeCafe(-1)">
-            −
-          </button>
-
-          <span class="cnt-val"
-            id="cafe-val">
-            0
-          </span>
-
-          <button class="cnt-btn"
-            onclick="changeCafe(1)">
-            +
-          </button>
-
-        </div>
-
-      </div>
-
-    </div>
-
-    <!-- FORMULE -->
-    <div class="card">
-
-      <div class="card-title">
-        Formule de calcul — ADEME
-      </div>
-
-      <div class="formula-box">
-
-        <strong>
-          Empreinte (kgCO₂e)
-        </strong>
-
-        =
-        Σ (nb repas × facteur d'émission)
-        +
-        cafés × 7 × 0,06
-
-        <br>
-
-        <strong>
-          Exemple :
-        </strong>
-
-        2 bœuf × 5,00
-        +
-        3 végétarien × 0,50
-        +
-        7 cafés × 0,06
-
-        =
-        <span class="hl">
-          11,92 kgCO₂e
-        </span>
-
-      </div>
-
-    </div>
-
-    <!-- RESULTATS -->
-    <div class="total-card">
-
-      <div class="total-label">
-        Empreinte repas — semaine en cours
-      </div>
-
-      <div class="total-num"
-        id="total-num">
-
-        0.00
-
-      </div>
-
-      <div class="total-unit">
-        kgCO₂e
-      </div>
-
-      <div class="result-badge badge-green"
-        id="result-badge">
-
-        Saisissez vos repas pour voir votre bilan
-
-      </div>
-
-      <div class="divider"
-        id="bars-divider"
-        style="display:none">
-      </div>
-
-      <div id="bars-container"></div>
-
-    </div>
-
-    <!-- BOUTONS -->
-    <div class="nav-btns">
-
-      <button class="nav-btn">
-        ← Trajet
-      </button>
-
-      <button class="nav-btn primary">
-        Suivant → Numérique
-      </button>
-
-    </div>
-
   </div>
 
-  <!-- SCRIPT -->
-  <script src="critere2.js"></script>
-  <script src="../js/api.js"></script>
-  <script src="../js/calcul.js"></script>
-  <script src="../js/dom.js"></script>
-  <script src="../js/critere2.js"></script>
-  <script src="../js/main.js"></script>
+  <div class="etapes">
+    <div class="etape terminee"><div class="step-num">✓</div><span>Trajet</span></div>
+    <div class="step-line"></div>
+    <div class="etape active"><div class="step-num">2</div><span>Repas</span></div>
+    <div class="step-line"></div>
+    <div class="etape"><div class="step-num">3</div><span>Num.</span></div>
+    <div class="step-line"></div>
+    <div class="etape"><div class="step-num">4</div><span>Elec.</span></div>
+    <div class="step-line"></div>
+    <div class="etape"><div class="step-num">5</div><span>Achats</span></div>
+  </div>
 
+  <div id="alerte-21" class="alerte">
+    ⚠️ Maximum atteint : 21 repas par semaine.
+  </div>
+
+  <div class="card">
+    <div class="carte-titre">Repas de la semaine</div>
+    <div class="meal-grid" id="meal-grid"></div>
+  </div>
+
+  <div class="card">
+    <div class="carte-titre">Café</div>
+    <div class="cafe-rangee">
+      <div>
+        <div class="cafe-label">Cafés par jour</div>
+        <div class="cafe-sous-label">0,06 kgCO2e × cafés/j × 7 jours</div>
+      </div>
+      <div class="counter">
+        <button class="cnt-btn" onclick="changeCafe(-1)">−</button>
+        <span class="cnt-val" id="cafe-val">0</span>
+        <button class="cnt-btn" onclick="changeCafe(1)">+</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="carte-titre">Formule de calcul — ADEME</div>
+    <div class="boite-formule">
+      <strong>Empreinte (kgCO2e)</strong> =
+      Σ (nb repas × facteur d'émission) + Cafés × 7 × 0,06<br><br>
+      <strong>Exemple :</strong>
+      2 bœuf × 5,00 + 3 végétariens × 0,50 + 7 cafés × 0,06 =
+      <span class="hl">11,92 kgCO2e</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="carte-titre">📊 Répartition par type de repas</div>
+    <canvas id="graphique-repas" height="200"></canvas>
+  </div>
+
+  <div class="total-card">
+    <div class="total-label">Empreinte repas — semaine en cours</div>
+    <div class="total-nombre" id="total-num">0.00</div>
+    <div class="total-unit">kgCO2e</div>
+    <div class="result-badge badge-green" id="result-badge">
+      Saisissez vos repas pour voir votre bilan
+    </div>
+    <div class="divider" id="bars-divider" style="display:none"></div>
+    <div id="bars-container"></div>
+  </div>
+
+  <div class="nav-btns">
+    <button class="nav-btn" onclick="window.location.href='critere1.html'">← Trajet</button>
+    <button class="nav-btn primaire" onclick="window.location.href='critere3.html'">Suivant → Numérique</button>
+  </div>
+
+</div>
+<script src="../js/charts.js"></script>
+<script src="../js/main.js"></script>
 </body>
 </html>

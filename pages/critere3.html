@@ -2,15 +2,117 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8"/>
-  <title>Critère 3 — Ma Semaine Verte</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <link rel="stylesheet" href="../styles/variables.css"/>
   <link rel="stylesheet" href="../styles/style.css"/>
+  <title>C3 Numérique — Ma Semaine Verte</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 </head>
 <body>
-  <p>Page critère 3 — à développer par le membre du groupe.</p>
-  <script src="../js/calcul.js"></script>
-  <script src="../js/api.js"></script>
-  <script src="../js/dom.js"></script>
-  <script src="../js/main.js"></script>
+
+<nav id="navbar">
+  <a href="../index.html">Accueil</a>
+  <a href="../index.html#fonctions">Fonctions</a>
+  <a href="critere1.html">C1 Trajet</a>
+  <a href="critere2.html">C2 Repas</a>
+  <a href="critere3.html" class="active">C3 Num.</a>
+  <a href="critere4.html">C4 Elec.</a>
+  <a href="critere5.html">C5 Achats</a>
+  <a href="../bilan.html">Bilan</a>
+  <a href="../index.html#promo">Promo</a>
+</nav>
+
+<div class="page-c3">
+
+  <h1>Critère 3 — Numérique</h1>
+  <p class="subtitle-c3">Kaba Ismaël N'Fallah — API Impact CO2 ADEME</p>
+
+  <div class="stepper-c3">
+    <div class="step-c3"><span class="snum">1</span><span>Trajet</span></div>
+    <div class="sline"></div>
+    <div class="step-c3"><span class="snum">2</span><span>Repas</span></div>
+    <div class="sline"></div>
+    <div class="step-c3 active"><span class="snum actif">3</span><span>Num.</span></div>
+    <div class="sline"></div>
+    <div class="step-c3"><span class="snum">4</span><span>Elec.</span></div>
+    <div class="sline"></div>
+    <div class="step-c3"><span class="snum">5</span><span>Achats</span></div>
+  </div>
+
+  <div id="loading" class="loading-c3">
+    <div class="spinner-c3"></div>
+    Chargement des données ADEME…
+  </div>
+  <div id="error" class="error-c3" style="display:none">
+    ⚠️ Impossible de joindre l'API. Données locales utilisées.
+  </div>
+
+  <div id="main-content" style="display:none">
+
+    <div class="card-c3">
+      <div class="card-titre-c3">💻 Vos équipements — saisissez vos quantités</div>
+      <p class="hint-c3">Entrez le nombre d'appareils que vous possédez, puis cliquez sur <strong>Calculer</strong>.</p>
+      <div id="equipment-list" class="equipment-form"></div>
+      <button class="btn-calculer" onclick="calculerDepuisFormulaire()">🔍 Calculer mon empreinte</button>
+    </div>
+
+    <div class="card-c3">
+      <div class="card-titre-c3">📶 Usages en ligne cette semaine</div>
+      <div id="co2-legend" class="legende-c3"></div>
+
+      <div class="slider-row">
+        <label>🎬 Streaming HD</label>
+        <div class="slider-wrap-c3">
+          <input type="range" class="slider" id="streaming" min="0" max="50" value="7" step="1" oninput="updateUsage()"/>
+          <span class="slider-val" id="streaming-val">7 h</span>
+        </div>
+      </div>
+      <div class="slider-row">
+        <label>📹 Visioconférence</label>
+        <div class="slider-wrap-c3">
+          <input type="range" class="slider" id="visio" min="0" max="30" value="3" step="1" oninput="updateUsage()"/>
+          <span class="slider-val" id="visio-val">3 h</span>
+        </div>
+      </div>
+      <div class="slider-row">
+        <label>🔍 Recherches web</label>
+        <div class="slider-wrap-c3">
+          <input type="range" class="slider" id="recherches" min="0" max="500" value="50" step="10" oninput="updateUsage()"/>
+          <span class="slider-val" id="recherches-val">50</span>
+        </div>
+      </div>
+      <div class="slider-row">
+        <label>📧 Emails envoyés</label>
+        <div class="slider-wrap-c3">
+          <input type="range" class="slider" id="emails" min="0" max="200" value="20" step="5" oninput="updateUsage()"/>
+          <span class="slider-val" id="emails-val">20</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-c3">
+      <div class="card-titre-c3">📊 Répartition de votre empreinte numérique</div>
+      <canvas id="graphique-numerique" height="220"></canvas>
+    </div>
+
+  </div>
+
+  <div id="total-footer" class="total-c3" style="display:none">
+    <div>
+      <div class="total-label-c3">Empreinte numérique (semaine)</div>
+      <span class="total-big-c3" id="total-co2">0.0</span>
+      <span class="total-unit-c3">kgCO2e</span>
+    </div>
+    <div class="equiv-c3" id="total-equiv">≈ 0 km voiture</div>
+  </div>
+
+  <div id="nav-buttons" class="nav-c3" style="display:none">
+    <button onclick="window.location.href='critere2.html'">← Repas</button>
+    <button class="btn-suivant-c3" onclick="window.location.href='critere4.html'">Elec. →</button>
+  </div>
+
+</div>
+<script src="../js/charts.js"></script>
+<script src="../js/main.js"></script>
 </body>
 </html>

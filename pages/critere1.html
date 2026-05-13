@@ -2,15 +2,144 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8"/>
-  <title>Critère 1 — Ma Semaine Verte</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <link rel="stylesheet" href="../styles/variables.css"/>
   <link rel="stylesheet" href="../styles/style.css"/>
+  <title>C1 Trajet — Ma Semaine Verte</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 </head>
 <body>
-  <p>Page critère 1 — à développer par le membre du groupe.</p>
-  <script src="../js/calcul.js"></script>
-  <script src="../js/api.js"></script>
-  <script src="../js/dom.js"></script>
-  <script src="../js/main.js"></script>
+
+<nav id="navbar">
+  <a href="../index.html">Accueil</a>
+  <a href="../index.html#fonctions">Fonctions</a>
+  <a href="critere1.html" class="active">C1 Trajet</a>
+  <a href="critere2.html">C2 Repas</a>
+  <a href="critere3.html">C3 Num.</a>
+  <a href="critere4.html">C4 Elec.</a>
+  <a href="critere5.html">C5 Achats</a>
+  <a href="../bilan.html">Bilan</a>
+  <a href="../index.html#promo">Promo</a>
+</nav>
+
+<div class="page">
+
+  <h1>Critere 1 — Trajet domicile → universite</h1>
+  <p class="subtitle">Boussad Cherigui — API Impact CO2 ADEME</p>
+
+  <div class="stepper-critere">
+    <div class="step-c active">
+      <span class="num">1</span>
+      <span>Trajet</span>
+    </div>
+    <div class="step-line-c"></div>
+    <div class="step-c">
+      <span class="num">2</span>
+      <span>Repas</span>
+    </div>
+    <div class="step-line-c"></div>
+    <div class="step-c">
+      <span class="num">3</span>
+      <span>Num.</span>
+    </div>
+    <div class="step-line-c"></div>
+    <div class="step-c">
+      <span class="num">4</span>
+      <span>Elec.</span>
+    </div>
+    <div class="step-line-c"></div>
+    <div class="step-c">
+      <span class="num">5</span>
+      <span>Achats</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Bloc 1 — Mode de transport</h2>
+    <div class="field">
+      <label>Mode</label>
+      <div id="select-wrap" style="flex:1">
+        <div class="loading">
+          <div class="spinner"></div>
+          Chargement des modes via API ADEME…
+        </div>
+      </div>
+    </div>
+    <div id="factor-info" class="info-facteur"></div>
+  </div>
+
+  <div class="card">
+    <h2>Bloc 2 — Distance et frequence</h2>
+
+    <div class="field">
+      <label>Distance A/R</label>
+      <div class="slider-wrap">
+        <input type="range" id="distance" min="1" max="200" value="15" step="1"
+               oninput="mettreAJour()"/>
+        <span class="val-badge"><span id="dist-val">15</span> km</span>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Jours / semaine</label>
+      <div class="slider-wrap">
+        <input type="range" id="jours" min="1" max="7" value="5" step="1"
+               oninput="mettreAJour()"/>
+        <span class="val-badge"><span id="jours-val">5</span> j</span>
+      </div>
+    </div>
+
+    <div class="formule-exemple">
+      Exemple : <span id="jours-ex">5</span> jours ×
+                <span id="dist-ex">15</span> km ×
+                <span id="facteur-ex">193</span> gCO2e/km =
+      <strong id="exemple-val">14.5 kgCO2e</strong> sur la semaine.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Bloc 3 — Covoiturage et modes alternatifs</h2>
+    <div class="field">
+      <label>Passagers</label>
+      <div class="stepper-champ">
+        <button onclick="modifierPassagers(-1)">−</button>
+        <span id="nb-passagers">1</span>
+        <button onclick="modifierPassagers(+1)">+</button>
+        <span class="unite-label">covoiturage</span>
+      </div>
+    </div>
+    <div class="suggestion-covoit" id="suggestion-covoit" style="display:none;">
+      Suggestion : avec <span id="nb-passagers-sugg">2</span> passagers,
+      votre empreinte serait de <strong id="val-covoit">—</strong>.
+    </div>
+  </div>
+
+  <div class="result-bar">
+    <div>
+      <div class="result-label">Empreinte trajet (semaine)</div>
+      <div>
+        <span class="result-big" id="result-val">—</span>
+        <span class="result-unit">kgCO2e</span>
+      </div>
+    </div>
+    <div class="equiv-badge" id="equiv-badge">= 75 km voiture</div>
+  </div>
+
+  <div class="card" style="margin-top:1rem;">
+    <h2>Comparaison des modes de transport</h2>
+    <p style="font-size:0.78rem;color:#888;margin-bottom:0.8rem;">
+      Pour la même distance et le même nombre de jours
+    </p>
+    <canvas id="co2-chart" height="220"></canvas>
+  </div>
+
+  <div class="nav-bas-critere">
+    <button class="btn-prec-critere" onclick="window.location.href='../index.html'">← Accueil</button>
+    <button class="btn-suiv-critere" onclick="window.location.href='critere2.html'">C2 Repas →</button>
+  </div>
+
+</div>
+<script src="../js/charts.js"></script>
+<script src="../js/main.js"></script>
 </body>
 </html>
